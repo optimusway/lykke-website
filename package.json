@@ -1,0 +1,21 @@
+{
+  "name": "lykke-website",
+  "private": true,
+  "scripts": {
+    "dev": "next -p ${PORT:-3000}",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "^7.0.2",
+    "polished": "^2.3.0",
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0",
+    "react-styled-flexboxgrid": "^2.6.0",
+    "styled-components": "^4.1.1"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^1.8.0"
+  },
+  "license": "CC"
+}
