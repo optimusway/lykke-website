@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import {rem} from "polished/lib/index";
 
 const Nav = styled.nav`
-  background: ${p => p.theme.bg};
+  background-color: ${p => p.theme.colors.white};
   min-height: 3em;
 `;
 
