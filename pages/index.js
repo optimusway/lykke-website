@@ -11,14 +11,18 @@ const Home = () => (
     <Grid>
       <Row>
         <Col lg={6}>
-          <h1>Buy and sell cryptocurrency and digital assets</h1>
-          <p>
-            Global marketplace for any kind of assets built on the top of
-            blockchain technology
+          <h1>Discover the world of digital assets</h1>
+          <p className="lead">
+            Lykke is your gateway to the future of investment, allowing you to securely buy, sell and store
+            cryptocurrencies and other digital assets on the fully regulated <b>Swiss-based Lykke Exchange</b>.
           </p>
+
+          <form className="form form_subscribe">
+
+          </form>
         </Col>
         <Col lg={6}>
-          <img src="https://placekitten.com/350/350" />
+          <img src="https://placekitten.com/695/507" />
         </Col>
       </Row>
     </Grid>

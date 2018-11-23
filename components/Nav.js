@@ -1,29 +1,51 @@
 import React from 'react';
 import Link from 'next/link';
-import {Grid, Row, Col} from 'react-styled-flexboxgrid';
+import {Row, Col} from 'react-styled-flexboxgrid';
 import styled from 'styled-components';
+import {rem} from "polished/lib/index";
 
 const Nav = styled.nav`
   background: ${p => p.theme.bg};
   min-height: 3em;
 `;
 
+const Logo = styled.div`
+  line-height: ${rem('60px')};
+  
+  img {
+    display: inline-block;
+    vertical-align: middle;
+  }
+`;
+
 export default () => (
-  <Nav as={Grid}>
-    <Row>
-      <Col lg={10}>
-        <Link prefetch href="/">
-          <a>Lykke</a>
-        </Link>
+  <Nav>
+    <Row className="align-items-center">
+      <Col>
+        <Logo>
+          <Link href="/">
+            <a><img src="/static/logo-main.svg" alt="Lykke" width="143px"/></a>
+          </Link>
+        </Logo>
       </Col>
-      <Col lg={1}>
+      <Col>
         <Link href="/signin">
-          <a>Sign in</a>
+          <a>Lykke Wallet</a>
         </Link>
       </Col>
-      <Col lg={1}>
+      <Col>
         <Link href="/signup">
-          <a>Get started</a>
+          <a>Lykke Trade</a>
+        </Link>
+      </Col>
+      <Col>
+        <Link href="/signup">
+          <a>CBCS Magazine</a>
+        </Link>
+      </Col>
+      <Col>
+        <Link href="/signup">
+          <a>About</a>
         </Link>
       </Col>
     </Row>
