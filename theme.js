@@ -9,7 +9,9 @@ const colors = {
   greyBluey: '#8c94a0',
   greyLight: '#ebedef',
   greyPale: '#f7f8f9',
+  slate: '#3f4d60',
   red: '#d64052',
+  orangeRed: '#ff3e2e',
   green: '#13b72a',
   blank: '#e8edf2',
   transparent: 'transparent'
@@ -17,11 +19,17 @@ const colors = {
 
 const corners = {
   primary: '4px',
+  secondary: '8px',
   card: '12px',
   round: '100px',
 }
 
 const light = {
+  flexboxgrid: {
+    container: {
+      lg: 80.25
+    },
+  },
   colors: colors,
   fonts: {
     primary:
@@ -39,8 +47,9 @@ const light = {
   },
   corners: corners,
   boxShadow: {
-    primary: 'box-shadow: 0 0 15px 0 rgba(101, 113, 128, 0.2)',
-    card: 'box-shadow: 0 4px 15px 0 rgba(101, 113, 128, 0.2), 0 2px 4px 0 rgba(140, 148, 160, 0.15)',
+    primary: '0 0 15px 0 rgba(101, 113, 128, 0.2)',
+    card: '0 4px 15px 0 rgba(101, 113, 128, 0.2), 0 2px 4px 0 rgba(140, 148, 160, 0.15)',
+    light: '0 0 17px 0 rgba(0, 0, 0, 0.11)',
   },
   transition: {
     primary: '.3s ease'

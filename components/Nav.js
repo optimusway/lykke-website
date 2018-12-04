@@ -1,21 +1,63 @@
 import React from 'react';
 import Link from 'next/link';
 import {Row, Col} from 'react-styled-flexboxgrid';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
+import {ifProp} from 'styled-tools'
+
 import {rem} from "polished/lib/index";
 
 const Nav = styled.nav`
-  background-color: ${p => p.theme.colors.white};
-  min-height: 3em;
+  background-color: ${p => p.theme.colors.transparent};
 `;
 
-const Logo = styled.div`
-  line-height: ${rem('60px')};
+const Logo = styled.div`  
+  margin-right: ${rem('14px')};
   
   img {
     display: inline-block;
     vertical-align: middle;
+    margin-top: -1px;
   }
+`;
+
+const NavItemInner = styled.div`
+  font-weight: 600;
+  font-size: ${rem('14px')};
+  text-transform: uppercase;
+  
+  a {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    padding: ${rem('20px')} ${rem('14px')} ${rem('18px')};
+    border: 1px solid transparent;
+    border-radius:  ${p => p.theme.corners.primary};
+    transition: color ${p => p.theme.transition.primary};
+    
+    img {
+      display: inline-block;
+      vertical-align: middle;
+      margin: ${rem('-12px')} ${rem('5px')} ${rem('-10px')} ${rem('-5px')};
+    }
+
+    &:hover {
+      color: ${p => p.theme.colors.primary};
+    }
+  }
+`;
+
+const NavItem = styled.div`
+  padding-left: ${rem('4px')};
+  padding-right: ${rem('4px')};
+  
+  ${ifProp('active',
+  css`  
+    a {
+      color: ${p => p.theme.colors.primary};
+      border-color: ${p => p.theme.colors.primary};
+    }
+  `
+)}
 `;
 
 export default () => (
@@ -24,30 +66,38 @@ export default () => (
       <Col>
         <Logo>
           <Link href="/">
-            <a><img src="/static/logo-main.svg" alt="Lykke" width="143px"/></a>
+            <a><img src="/static/logo-main.svg" alt="Lykke" width="115px"/></a>
           </Link>
         </Logo>
       </Col>
-      <Col>
-        <Link href="/signin">
-          <a>Lykke Wallet</a>
-        </Link>
-      </Col>
-      <Col>
-        <Link href="/signup">
-          <a>Lykke Trade</a>
-        </Link>
-      </Col>
-      <Col>
-        <Link href="/signup">
-          <a>CBCS Magazine</a>
-        </Link>
-      </Col>
-      <Col>
-        <Link href="/signup">
-          <a>About</a>
-        </Link>
-      </Col>
+      <NavItem as={Col} active>
+        <NavItemInner>
+          <Link href="#">
+            <a><img src="/static/lykke_wallet_logo.svg" alt="Lykke" width="36px"/> Lykke Wallet</a>
+          </Link>
+        </NavItemInner>
+      </NavItem>
+      <NavItem as={Col}>
+        <NavItemInner>
+          <Link href="#">
+            <a target="_blank"><img src="/static/lykke_exchange_logo.svg" alt="Lykke" width="36px"/> Lykke Trade</a>
+          </Link>
+        </NavItemInner>
+      </NavItem>
+      <NavItem as={Col}>
+        <NavItemInner>
+          <Link href="#">
+            <a target="_blank">CBCS Magazine</a>
+          </Link>
+        </NavItemInner>
+      </NavItem>
+      <NavItem as={Col}>
+        <NavItemInner dropdown>
+          <Link href="#">
+            <a>About</a>
+          </Link>
+        </NavItemInner>
+      </NavItem>
     </Row>
   </Nav>
 );

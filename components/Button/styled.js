@@ -64,6 +64,7 @@ const Color = p => {
 export const Wrapper = styled.span``
 
 export const ButtonBlank = styled.button`
+  font-family: ${p => p.theme.fonts.primary};
   position: relative;
   display: inline-block;
   vertical-align: middle;
@@ -75,16 +76,22 @@ export const ButtonBlank = styled.button`
   text-align: center;
   line-height: normal;
   white-space: nowrap;
-  background-color: transparent;
   border: 0;
   outline: 0;
   cursor: pointer;
   overflow: hidden;
   font-weight: 600;
-  padding: ${rem('13px')} ${rem('25px')};
+  font-size: ${rem('18px')};
+  padding: ${rem('14px')} ${rem('25px')};
+  background-color: transparent;
+  appearance: none;
 
   &:hover {
     text-decoration: none;
+  }
+  
+  &:focus {
+    outline: none;
   }
 
   ${Style} ${Color} ${Wrapper} {
