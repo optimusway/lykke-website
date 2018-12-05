@@ -2,7 +2,6 @@ import React from 'react';
 import styled, {css} from 'styled-components';
 import {Grid, Row, Col} from 'react-styled-flexboxgrid';
 import {rem} from 'polished';
-import {ifProp} from "styled-tools";
 
 const MarketList = styled.div`
   background-color: ${p => p.theme.colors.greyPale};
@@ -25,17 +24,18 @@ const Title = styled.div`
 const Value = styled.span`
   font-weight: 600;
   margin-left: ${rem('8px')};
-  
-  ${ifProp('green',
-  css`
-    color: ${p => p.theme.colors.green}
+    
+  ${(p) => p.green &&
+    css`
+      color: ${p => p.theme.colors.green}
     `
-)}
-  ${ifProp('red',
-  css`
-    color: ${p => p.theme.colors.orangeRed}
+  }
+    
+  ${(p) => p.red &&
+    css`
+      color: ${p => p.theme.colors.orangeRed}
     `
-)}
+  }
 `;
 
 const Desc = styled.div`
@@ -63,30 +63,30 @@ const Label = styled.span`
   color: ${p => p.theme.colors.white};
   border-radius: ${p => p.theme.corners.primary};
 
-  ${ifProp('green',
-  css`
-    background-color: ${p => p.theme.colors.green};
+  ${(p) => p.green &&
+    css`
+      background-color: ${p => p.theme.colors.green};
     `
-  )}
+  }
 `;
 
 const ListItem = styled.div`
-  ${ifProp('accent',
-  css`
-    ${Desc} {
-      font-size: ${rem('11px')};
-      color: ${p => p.theme.colors.slate};
-      opacity: .6;
-      line-height: 1;
-      margin-top: ${rem('5px')};
-    }
-    
-    ${Title} {
-      font-size: ${rem('16px')};
-      color: ${p => p.theme.colors.dark};
-    }
-  `
-  )}
+  ${(p) => p.accent &&
+    css`
+      ${Desc} {
+        font-size: ${rem('11px')};
+        color: ${p => p.theme.colors.slate};
+        opacity: .6;
+        line-height: 1;
+        margin-top: ${rem('5px')};
+      }
+      
+      ${Title} {
+        font-size: ${rem('16px')};
+        color: ${p => p.theme.colors.dark};
+      }
+    `
+  }
 `;
 
 export default () => (

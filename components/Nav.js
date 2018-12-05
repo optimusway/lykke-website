@@ -2,7 +2,6 @@ import React from 'react';
 import Link from 'next/link';
 import {Row, Col} from 'react-styled-flexboxgrid';
 import styled, {css} from 'styled-components';
-import {ifProp} from 'styled-tools'
 
 import {rem} from "polished/lib/index";
 
@@ -50,14 +49,14 @@ const NavItem = styled.div`
   padding-left: ${rem('4px')};
   padding-right: ${rem('4px')};
   
-  ${ifProp('active',
-  css`  
-    a {
-      color: ${p => p.theme.colors.primary};
-      border-color: ${p => p.theme.colors.primary};
-    }
-  `
-)}
+  ${(p) => p.active &&
+    css`
+      a {
+        color: ${p => p.theme.colors.primary};
+        border-color: ${p => p.theme.colors.primary};
+      }
+    `
+  }
 `;
 
 export default () => (

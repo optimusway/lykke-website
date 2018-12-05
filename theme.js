@@ -27,8 +27,14 @@ const corners = {
 const light = {
   flexboxgrid: {
     container: {
+      xs: false,
+      sm: false,
+      md: false,
       lg: 80.25
     },
+    breakpoints: {
+      lg: 80.25
+    }
   },
   colors: colors,
   fonts: {
@@ -39,6 +45,7 @@ const light = {
   },
   fontSize: {
     primary: '16px',
+    lead: '18px',
     h1: '60px',
     h2: '48px',
     h3: '38px',

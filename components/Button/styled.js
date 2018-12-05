@@ -1,5 +1,4 @@
 import styled, {css} from 'styled-components'
-import {ifProp} from 'styled-tools'
 import {rem} from 'polished'
 
 function getStyle(options) {
@@ -40,23 +39,20 @@ const Color = p => {
     transition: ${p => p.theme.transition.primary};
 
     @media (min-width: ${p => p.theme.media.tablet}) {
-      ${ifProp(
-        'disabled',
-        '',
-        css`
-          &:hover {
-            color: ${p => p.theme.button[color][style].colorHover};
-            background-color: ${p => p.theme.button[color][style].backgroundColorHover};
-            box-shadow: ${p => p.theme.button[color][style].boxShadowHover};
-          }
+    ${(p) => !p.disabled &&
+      css`
+        &:hover {
+          color: ${p => p.theme.button[color][style].colorHover};
+          background-color: ${p => p.theme.button[color][style].backgroundColorHover};
+          box-shadow: ${p => p.theme.button[color][style].boxShadowHover};
+        }
 
-          &:active {
-            color: ${p => p.theme.button[color][style].colorActive};
-            background-color: ${p => p.theme.button[color][style].backgroundColorActive};
-            box-shadow: ${p => p.theme.button[color][style].boxShadowActive};
-          }
-        `
-      )};
+        &:active {
+          color: ${p => p.theme.button[color][style].colorActive};
+          background-color: ${p => p.theme.button[color][style].backgroundColorActive};
+          box-shadow: ${p => p.theme.button[color][style].boxShadowActive};
+        }
+      `
     }
   `
 }
@@ -69,7 +65,6 @@ export const ButtonBlank = styled.button`
   display: inline-block;
   vertical-align: middle;
   margin: 0;
-  padding: 0;
   font-family: inherit;
   color: inherit;
   text-decoration: none;
@@ -97,18 +92,25 @@ export const ButtonBlank = styled.button`
   ${Style} ${Color} ${Wrapper} {
     display: block;
   }
-
-  ${ifProp(['opts.block'],
+  
+  ${(p) => p.block &&
     css`
-        display: block;
-        width: 100%;
-        box-sizing: border-box;
-      `
-  )}
-
-  ${ifProp('disabled',
-    css` 
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+    `
+  };
+  
+  ${(p) => p.small &&
+    css`
+      font-size: ${rem('16px')};
+      padding: ${rem('10px')} ${rem('16px')};
+    `
+  };
+  
+  ${(p) => p.disabled &&
+    css`
       cursor: default;
     `
-  )};
+  };
 `

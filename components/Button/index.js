@@ -62,9 +62,9 @@ export default function Button(props) {
     <ButtonComponent
       {...(href ? { href: href, role: 'button' } : { type: 'button' })}
       disabled={disabled}
+      block={block}
       opts={getButtonOptions({
         disabled,
-        block,
         bordered,
         flat,
         primary,

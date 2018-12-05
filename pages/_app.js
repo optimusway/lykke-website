@@ -7,13 +7,15 @@ import Header from '../components/Header';
 import MarketList from '../components/MarketList';
 import theme from '../theme';
 import styled from 'styled-components';
+
 import '../utils/font-face';
+import GlobalIcons from '../utils/icons';
 
 const GlobalStyle = createGlobalStyle`
   ${normalize()}; 
   
   html {
-    font-size: ${p => `${p.theme.fontSize.primary}`};
+    font-size: ${p => p.theme.fontSize.primary};
   }
   
   body {
@@ -85,7 +87,7 @@ const GlobalStyle = createGlobalStyle`
   
   .lead {
     color: ${p => p.theme.colors.grey};
-    font-size: ${p => rem(p.theme.fontSize.h5)};
+    font-size: ${p => rem(p.theme.fontSize.lead)};
   } 
   
   .justify-content-between {
@@ -136,6 +138,7 @@ export default class LykkeApp extends App {
       <ThemeProvider theme={theme}>
         <Container>
           <GlobalStyle />
+          <GlobalIcons />
           <Layout>
             <Component {...pageProps} />
           </Layout>

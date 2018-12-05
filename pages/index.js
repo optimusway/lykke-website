@@ -4,6 +4,8 @@ import Button from '../components/Button'
 import {Grid, Col, Row} from 'react-styled-flexboxgrid';
 import Link from 'next/link';
 
+import {social} from '../utils/social'
+
 import {
   Section,
   SectionHeader,
@@ -16,8 +18,15 @@ import {
   InputGroup,
   Input,
   FormSubscribe,
-  Disclaimer
+  Disclaimer,
+  Cards,
+  Card,
+  CardTitle,
+  CardText,
+  CardFooter,
+  Social
 } from './index-styled'
+
 
 const Home = () => (
   <>
@@ -102,7 +111,83 @@ const Home = () => (
       </Grid>
     </Section>
 
-    <Section>
+    <Section grey>
+      <Grid>
+        <SectionHeader>
+          <h3>Join the voices of the future of finance</h3>
+        </SectionHeader>
+
+        <SectionLink>
+          <Button href="#">Sign up</Button>
+        </SectionLink>
+      </Grid>
+    </Section>
+
+    <Section small>
+      <Grid>
+        <Cards>
+          <Row>
+            <Col sm={4}>
+              <Card>
+                <i className="icon icon--register"/>
+                <CardTitle>Register</CardTitle>
+                <CardText>Get your free account with Lykke</CardText>
+                <CardFooter border>
+                  <Button className="btn" flat small href="#">Create free account</Button>
+                </CardFooter>
+              </Card>
+            </Col>
+            <Col sm={4}>
+              <Card>
+                <i className="icon icon--follow"/>
+                <CardTitle>Follow us</CardTitle>
+                <CardText>We like to stay in touch with our community.</CardText>
+                <CardFooter>
+                  <Social>
+                    <Row>
+                      <Col xs={3}>
+                        <a href={social.telegram.url} title={social.telegram.name} target="_blank">
+                          <i className={"icon " + social.telegram.icon}/>
+                        </a>
+                      </Col>
+                      <Col xs={3}>
+                        <a href={social.twitter.url} title={social.twitter.name} target="_blank">
+                          <i className={"icon " + social.twitter.icon}/>
+                        </a>
+                      </Col>
+                      <Col xs={3}>
+                        <a href={social.facebook.url} title={social.facebook.name} target="_blank">
+                          <i className={"icon " + social.facebook.icon}/>
+                        </a>
+                      </Col>
+                      <Col xs={3}>
+                        <a href={social.instagram.url} title={social.instagram.name} target="_blank">
+                          <i className={"icon " + social.instagram.icon}/>
+                        </a>
+                      </Col>
+                    </Row>
+                  </Social>
+                </CardFooter>
+              </Card>
+            </Col>
+            <Col sm={4}>
+              <Card>
+                <i className="icon icon--newsletter"/>
+                <CardTitle>SCBC Magazine</CardTitle>
+                <CardText>Get our latest news right to your mailbox</CardText>
+                <CardFooter border>
+                  <form>
+                    <input type="text"/>
+                  </form>
+                </CardFooter>
+              </Card>
+            </Col>
+          </Row>
+        </Cards>
+      </Grid>
+    </Section>
+
+    <Section nopadding>
       <Grid>
         <Disclaimer>
           <Row>

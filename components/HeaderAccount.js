@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import Button from './Button';
-import Link from 'next/link';
 import {Row, Col} from 'react-styled-flexboxgrid';
 
 const Wrapper = styled.div`

@@ -4,6 +4,8 @@ import Link from 'next/link';
 import {Grid,Row, Col} from 'react-styled-flexboxgrid';
 import {rem} from 'polished';
 
+import {social} from '../utils/social'
+
 import Apps from './Apps';
 
 const Footer = styled.footer`
@@ -13,7 +15,7 @@ const Footer = styled.footer`
 `;
 
 const Top = styled.section`
-  padding: ${rem('35px')} 0;
+  padding: ${rem('35px')} 0;  
   border-top: 1px solid ${p => p.theme.colors.greyLight};
 `;
 
@@ -74,6 +76,30 @@ const List = styled.ul`
     margin-top: ${rem('10px')};
   }
 `;
+
+function ListItem(props) {
+  return <li><Link href={props.url}><a target="_blank">{props.name}</a></Link></li>;
+}
+
+function SocialList(props) {
+  const social = props.social;
+
+  Object.keys(social).forEach(function(key) {
+    console.log(social[key].name, social[key].url);
+  });
+
+  const listItems = Object.keys(social).map((key, index) =>
+    <ListItem key={index}
+              name={social[key].name}
+              url={social[key].url} />
+
+  );
+  return (
+    <List>
+      {listItems}
+    </List>
+  );
+}
 
 export default () => (
   <Footer>
@@ -196,35 +222,7 @@ export default () => (
               <Col md={3}>
                 <ListWrapper>
                   <ListHeader>Social</ListHeader>
-                  <List>
-                    <li>
-                      <Link href="https://www.facebook.com/LykkeCity"><a target="_blank">Facebook</a></Link>
-                    </li>
-                    <li>
-                      <Link href="https://twitter.com/lykke"><a target="_blank">Twitter</a></Link>
-                    </li>
-                    <li>
-                      <Link href="http://instagram.com/lykkecity"><a target="_blank">Instagram</a></Link>
-                    </li>
-                    <li>
-                      <Link href="https://www.youtube.com/c/LykkeX"><a target="_blank">Youtube</a></Link>
-                    </li>
-                    <li>
-                      <Link href="https://www.linkedin.com/company/lykke"><a target="_blank">LinkedIn</a></Link>
-                    </li>
-                    <li>
-                      <Link href="https://www.reddit.com/r/lykke"><a target="_blank">Reddit</a></Link>
-                    </li>
-                    <li>
-                      <Link href="https://t.co/TmjMYnQD7T"><a target="_blank">Telegram</a></Link>
-                    </li>
-                    <li>
-                      <Link href="https://t.me/LykkeDev"><a target="_blank">Telegram DEV</a></Link>
-                    </li>
-                    <li>
-                      <Link href="/cp/rss"><a target="_blank">RSS</a></Link>
-                    </li>
-                  </List>
+                  <SocialList social={social} />
                 </ListWrapper>
               </Col>
             </Row>
