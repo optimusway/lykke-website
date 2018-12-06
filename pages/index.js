@@ -24,7 +24,16 @@ import {
   CardTitle,
   CardText,
   CardFooter,
-  Social
+  Social,
+  Accordion,
+  AccordionItem,
+  AccordionIcon,
+  AccordionContent,
+  AccordionTitle,
+  AccordionText,
+  TabSlider,
+  AccentText
+
 } from './index-styled'
 
 
@@ -102,12 +111,80 @@ const Home = () => (
       <Grid>
         <SectionHeader>
           <h3>Everything you need. Right where you need it.</h3>
-          <p>The Lykke Wallet is packed with simple yet powerful features to give you everything you need to secure your future in digital assets.</p>
+          <p>
+            The Lykke Wallet is packed with simple yet powerful
+            features to give you everything you need to secure your future in digital assets.
+          </p>
         </SectionHeader>
+
+        <TabSlider>
+          <Row>
+            <Col md={6}>
+              <Accordion>
+                <AccordionItem active>
+                  <AccordionIcon>
+                    <img src="/static/images/icons-card.svg" alt="card" width="50px"/>
+                  </AccordionIcon>
+                  <AccordionContent>
+                    <AccordionTitle>Easily buy the world's top trending crypto</AccordionTitle>
+                    <AccordionText>
+                      Become a part of the future of finance. Buy your first Bitcoin,
+                      Ether or other cryptocurrencies with your credit card or bank wire.
+                    </AccordionText>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem>
+                  <AccordionIcon>
+                    <img src="/static/images/icons-safe.svg" alt="safe" width="40px"/>
+                  </AccordionIcon>
+                  <AccordionContent>
+                    <AccordionTitle>Secure storage. Peace of mind.</AccordionTitle>
+                    <AccordionText>
+                      Become a part of the future of finance. Buy your first Bitcoin,
+                      Ether or other cryptocurrencies with your credit card or bank wire.
+                    </AccordionText>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem>
+                  <AccordionIcon>
+                    <img src="/static/images/icon-exchange.svg" alt="safe" width="40px"/>
+                  </AccordionIcon>
+                  <AccordionContent>
+                    <AccordionTitle>Convert crypto to currency easily.</AccordionTitle>
+                    <AccordionText>
+                      Become a part of the future of finance. Buy your first Bitcoin,
+                      Ether or other cryptocurrencies with your credit card or bank wire.
+                    </AccordionText>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </Col>
+            <Col md={6}>
+              <img src="/static/images/phone-01.png" alt="" width="467px"/>
+            </Col>
+          </Row>
+        </TabSlider>
 
         <SectionLink>
           <Button href="#">Get Started Now</Button>
         </SectionLink>
+      </Grid>
+    </Section>
+
+    <Section grey>
+      <Grid>
+        <Row>
+          <Col sm={6}>
+            <AccentText>Not sure which crypto is right for you?</AccentText>
+            <p>LyCI is a weighted index that consolidates and tracks a selection of the worlds top performing cryptocurrencies.
+              It provides a snapshot of the crypto market in one single, easily understandable measure.</p>
+
+            <Button href="#">Learn more about Lykke Index</Button>
+          </Col>
+          <Col sm={6}></Col>
+        </Row>
       </Grid>
     </Section>
 
@@ -177,7 +254,14 @@ const Home = () => (
                 <CardText>Get our latest news right to your mailbox</CardText>
                 <CardFooter border>
                   <form>
-                    <input type="text"/>
+                    <Row>
+                      <Col xs={9}>
+                        <input type="text" placeholder="Your email"/>
+                      </Col>
+                      <Col xs={3}>
+                        <Button flat small block className="btn">Subscribe</Button>
+                      </Col>
+                    </Row>
                   </form>
                 </CardFooter>
               </Card>
