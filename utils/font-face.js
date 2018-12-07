@@ -77,6 +77,14 @@ const GlobalFontFace = createGlobalStyle`
       'fileFormats': ['eot','woff','ttf','svg']
     }
   )}
+  
+  ${fontFace({
+      'fontFamily': 'Akrobat',
+      'fontWeight': '900',
+      'fontFilePath': 'static/fonts/akrobat-black',
+      'fileFormats': ['eot','woff','ttf','svg']
+    }
+  )}
 `;
 
 export default GlobalFontFace;

@@ -25,6 +25,7 @@ const Style = p => {
 
   return css`
     border-radius: ${p => p.theme.button[style].borderRadius};
+    font-weight: ${p => p.theme.button[style].fontWeight};
   `
 }
 
@@ -36,6 +37,7 @@ const Color = p => {
     color: ${p => p.theme.button[color][style].color};
     background-color: ${p => p.theme.button[color][style].backgroundColor};
     box-shadow: ${p => p.theme.button[color][style].boxShadow};
+    border: ${p => p.theme.button[color][style].border};
     transition: ${p => p.theme.transition.primary};
 
     @media (min-width: ${p => p.theme.media.tablet}) {

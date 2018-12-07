@@ -71,12 +71,15 @@ const light = {
   button: {
     styleDefault: {
       borderRadius: corners.round,
+      fontWeight: '600'
     },
     styleBordered: {
       borderRadius: corners.round,
+      fontWeight: 'normal'
     },
     styleFlat: {
       borderRadius: 0,
+      fontWeight: '600'
     },
     colorPrimary: {
       styleDefault: {

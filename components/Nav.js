@@ -40,7 +40,7 @@ const NavItemInner = styled.div`
     }
 
     &:hover {
-      color: ${p => p.theme.colors.primary};
+      color: ${p => p.theme.colors.grey};
     }
   }
 `;
@@ -54,6 +54,10 @@ const NavItem = styled.div`
       a {
         color: ${p => p.theme.colors.primary};
         border-color: ${p => p.theme.colors.primary};
+        
+        &:hover {
+          color: ${p => p.theme.colors.primary};
+        }
       }
     `
   }
