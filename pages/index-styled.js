@@ -291,7 +291,8 @@ export const Social = styled.div`
 `;
 
 export const Accordion = styled.div`
-
+  margin-top: ${rem('98px')};
+  margin-bottom: ${rem('40spx')};
 `;
 
 export const AccordionContent = styled.div`
@@ -371,4 +372,8 @@ export const AccordionIcon = styled.div`
 `;
 
 export const AccentText = styled.div`
+`;
+
+export const SliderImages = styled.div`
+  margin: -10px 0 73px 70px;
 `;

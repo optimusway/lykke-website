@@ -32,6 +32,7 @@ import {
   AccordionTitle,
   AccordionText,
   TabSlider,
+  SliderImages,
   AccentText
 
 } from './index-styled'
@@ -162,7 +163,9 @@ const Home = () => (
               </Accordion>
             </Col>
             <Col md={6}>
-              <img src="/static/images/phone-01.png" alt="" width="467px"/>
+              <SliderImages>
+                <img src="/static/images/phone-01.png" alt="" width="467px"/>
+              </SliderImages>
             </Col>
           </Row>
         </TabSlider>

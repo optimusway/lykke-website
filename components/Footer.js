@@ -84,10 +84,6 @@ function ListItem(props) {
 function SocialList(props) {
   const social = props.social;
 
-  Object.keys(social).forEach(function(key) {
-    console.log(social[key].name, social[key].url);
-  });
-
   const listItems = Object.keys(social).map((key, index) =>
     <ListItem key={index}
               name={social[key].name}
