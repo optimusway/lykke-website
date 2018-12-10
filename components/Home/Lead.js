@@ -70,7 +70,7 @@ export const FormSubscribe = styled.form`
   button {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
-    padding: ${rem('16px')} ${rem('25px')};
+    padding: ${rem('18px')} ${rem('25px')};
   }
 `;
 
