@@ -5,6 +5,10 @@ import {Row, Col} from 'react-styled-flexboxgrid';
 
 const Wrapper = styled.div`
   flex-shrink: 0;
+  
+  @media all and (max-width: 991px) {
+    display:none;
+  }
 `;
 
 export default () => (

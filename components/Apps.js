@@ -6,9 +6,13 @@ import {Row, Col} from 'react-styled-flexboxgrid';
 const Wrapper = styled.div`  
   width: 355px;
   max-width: 100%;
+  margin-bottom: 25px;
 `;
 
 const AppItem = styled.div`
+  font-size: 0;
+  line-height: 0;
+  
   img {
     width: 100%;
   }

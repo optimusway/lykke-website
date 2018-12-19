@@ -24,23 +24,45 @@ export const Card = styled.div`
     margin-bottom: ${rem('20px')};
     padding: ${rem('5px')} ${rem('3px')};
   }
+  
+  @media all and (max-width: 767px) {
+    text-align: center;
+    margin-bottom: 25px;
+    padding: 15px 15px 70px;
+    
+    > .icon {
+      margin-bottom: ${rem('10px')};
+    }
+   
+  }
+
 `;
 
 export const Cards = styled.div`
-  ${Card} {
-    height: 100%;
-  }
-  
   > ${Row} {
-    margin-left: ${rem('-20px')};
-    margin-right: ${rem('-20px')};
-    
     > ${Col} {
-      padding-left: ${rem('20px')};
-      padding-right: ${rem('20px')}
+      &:last-child ${Card} {
+        margin-bottom: 0;
+      }
     }
   }
- 
+  
+    
+  @media all and (min-width: 992px) {
+    ${Card} {
+      height: 100%;
+    }
+  
+    > ${Row} {
+      margin-left: ${rem('-20px')};
+      margin-right: ${rem('-20px')};
+      
+      > ${Col} {
+        padding-left: ${rem('20px')};
+        padding-right: ${rem('20px')}
+      }
+    }
+  }
 `;
 
 export const CardTitle = styled.h4`
@@ -56,6 +78,10 @@ export const CardText = styled.div`
   line-height: 1.67;
   color: ${p => p.theme.colors.grey};
   margin-bottom: ${rem('20px')};
+  
+  @media all and (max-width: 767px) {
+    
+  }
 `;
 
 export const CardFooter = styled.div`
@@ -65,7 +91,8 @@ export const CardFooter = styled.div`
   right: ${rem('25px')};
   min-height: ${rem('60px')};
   padding: ${rem('9px')} 0;
-
+ 
+  
   ${(p) => p.border &&
   css`
       border-top: 2px solid ${p => p.theme.colors.greyLight};
@@ -80,11 +107,21 @@ export const CardFooter = styled.div`
   form {
     input {
       border: 0;
+      height: 100%;
       padding: ${rem('10px')} 0;
   
       &:focus {
         outline: none;
       }
+    }
+  }
+  
+  @media all and (max-width: 767px) {
+    left: 0;
+    right: 0;
+    
+    form input {
+      padding-left: 20px;
     }
   }
 `;
@@ -104,14 +141,20 @@ export const Social = styled.div`
       color: ${p => p.theme.colors.dark};
     }
   }
+  
+  @media all and (max-width: 767px) {
+    a {
+      font-size: 24px;
+    }
+  }
 `;
 
 export default () => (
   <Wrapper>
-    <Grid>
+    <Grid className="container">
       <Cards>
         <Row>
-          <Col sm={4}>
+          <Col xs={12} sm={4}>
             <Card>
               <i className="icon icon--register"/>
               <CardTitle>Register</CardTitle>
@@ -121,7 +164,7 @@ export default () => (
               </CardFooter>
             </Card>
           </Col>
-          <Col sm={4}>
+          <Col xs={12} sm={4}>
             <Card>
               <i className="icon icon--follow"/>
               <CardTitle>Follow us</CardTitle>
@@ -154,7 +197,7 @@ export default () => (
               </CardFooter>
             </Card>
           </Col>
-          <Col sm={4}>
+          <Col xs={12} sm={4}>
             <Card>
               <i className="icon icon--newsletter"/>
               <CardTitle>SCBC Magazine</CardTitle>
@@ -162,10 +205,10 @@ export default () => (
               <CardFooter border>
                 <form>
                   <Row>
-                    <Col xs={9}>
+                    <Col xs={7} sm={9}>
                       <input type="text" placeholder="Your email"/>
                     </Col>
-                    <Col xs={3}>
+                    <Col xs={5} sm={3}>
                       <Button flat small block className="btn">Subscribe</Button>
                     </Col>
                   </Row>

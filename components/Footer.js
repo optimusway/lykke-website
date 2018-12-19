@@ -17,6 +17,10 @@ const Footer = styled.footer`
 const Top = styled.section`
   padding: ${rem('35px')} 0;  
   border-top: 1px solid ${p => p.theme.colors.greyLight};
+  
+  @media all and (max-width: 767px) {
+    padding: 30px 0;  
+  }
 `;
 
 const Bottom = styled.section`
@@ -29,14 +33,31 @@ const Bottom = styled.section`
 
   a {
     color: ${p => p.theme.colors.grey};
+    display: inline-block;
 
     &:hover {
       color: ${p => p.theme.colors.slate};
     }
     
-    + a {
+    &:last-child {
       margin-left: ${rem('25px')};
     }
+  }
+  
+  @media all and (max-width: 767px) {
+     text-align: center;
+     border: 0;
+     padding: 0;
+     font-size:  13px;
+     
+     a {
+        margin: 8px 0 0 0 !important;
+     }
+     
+     .text-right {
+        text-align: center !important;
+     }
+     
   }
 `;
 
@@ -48,10 +69,21 @@ const Logo = styled.div`
 const ListWrapper = styled.div`  
   padding: ${rem('10px')} 0;
   margin-bottom: ${rem('25px')};
+  
+  @media all and (max-width: 767px) {
+    padding: 0;
+  }
 `;
 
 const ListHeader = styled.h5`  
   padding: 0 ${rem('10px')};
+
+  @media all and (max-width: 767px) {
+    font-size: 14px;
+    line-height: 1.43;
+    margin-bottom: 8px;
+    padding-left: 0;
+  }
 `;
 
 const List = styled.ul`  
@@ -74,6 +106,20 @@ const List = styled.ul`
   
   li + li {
     margin-top: ${rem('10px')};
+  }
+  
+  @media all and (max-width: 767px) {
+    font-size: 14px;
+    font-weight: normal;
+    
+     a {
+      color: ${p => p.theme.colors.grey};
+      padding: 3px 0;
+    }
+    
+    li + li {
+      margin-top: ${rem('8px')};
+    }
   }
 `;
 
@@ -99,11 +145,11 @@ function SocialList(props) {
 
 export default () => (
   <Footer>
-    <Grid>
+    <Grid className="container">
       <Top>
         <Row>
-          <Col lg={4}>
-            <Logo>
+          <Col xs={12} md={4}>
+            <Logo className="d-none d-md-block">
               <Link href="/">
                 <a><img src="/static/logo-main.svg" alt="Lykke" width="108px"/></a>
               </Link>
@@ -111,9 +157,9 @@ export default () => (
             <Apps/>
           </Col>
 
-          <Col lg={8}>
+          <Col xs={12} md={8}>
             <Row>
-              <Col md={3}>
+              <Col xs={6} sm={3} md={3}>
                 <ListWrapper>
                   <ListHeader>Products</ListHeader>
                   <List>
@@ -155,7 +201,7 @@ export default () => (
                   </List>
                 </ListWrapper>
               </Col>
-              <Col md={3}>
+              <Col xs={6} sm={3} md={3}>
                 <ListWrapper>
                   <ListHeader>About</ListHeader>
                   <List>
@@ -188,7 +234,7 @@ export default () => (
                   </List>
                 </ListWrapper>
               </Col>
-              <Col md={3}>
+              <Col xs={6} sm={3} md={3}>
                 <ListWrapper>
                   <ListHeader>Get in touch</ListHeader>
                   <List>
@@ -215,7 +261,7 @@ export default () => (
                   </List>
                 </ListWrapper>
               </Col>
-              <Col md={3}>
+              <Col xs={6} sm={3} md={3}>
                 <ListWrapper>
                   <ListHeader>Social</ListHeader>
                   <SocialList social={social} />
@@ -228,11 +274,12 @@ export default () => (
 
       <Bottom>
         <Row className="justify-content-between">
-          <Col>© 2018 Lykke, Inc.</Col>
-          <Col className="text-right">
+          <Col xs={12} sm={6}>© 2018 Lykke, Inc.</Col>
+          <Col xs={12} sm={6} className="text-right">
             <Link href="#">
               <a>Privacy Policy</a>
             </Link>
+            <br className="d-md-none"/>
             <Link href="#">
               <a>Terms of Use</a>
             </Link>

@@ -15,12 +15,24 @@ export const AccentText = styled.div`
   margin-bottom: ${rem('25px')};
   line-height: normal;
   font-weight: 600;
+  
+  @media all and (max-width: 767px) {
+    margin-top: 0;
+    font-size: 16px;
+    margin-bottom: 10px
+  }
 `;
 
 export const ButtonContainer = styled.div`
   button, a {
     width: 100%;
     max-width: 335px;
+  }
+`;
+
+export const Wrapper = styled(Section)`
+  @media all and (max-width: 767px) {
+    padding-top: 34px;
   }
 `;
 
@@ -53,6 +65,12 @@ export const Title = styled.h2`
   letter-spacing: -.02em;
   font-weight: 900;
   margin-bottom: ${rem('10px')};
+  
+  @media all and (max-width: 767px) {
+    font-size: 46px;
+    line-height: 58px;
+    margin-bottom: 20px;
+  }
 `;
 
 export const Gradient = styled.div`
@@ -63,10 +81,10 @@ export const Gradient = styled.div`
 `;
 
 export default () => (
-  <Section grey>
-    <Grid>
+  <Wrapper grey>
+    <Grid className="container">
       <Row>
-        <Col sm={4}>
+        <Col xs={12} sm={6} md={4}>
           <AccentText>Not sure which crypto is right for you?</AccentText>
 
           <Title>
@@ -81,7 +99,7 @@ export default () => (
             <Button bordered href="#" target="_blank">Learn more about Lykke Index</Button>
           </ButtonContainer>
         </Col>
-        <Col sm={8} className="text-center">
+        <Col xs={12} sm={6} md={8} className="text-center d-none d-md-block">
           <Image>
             <img src="/static/images/chart.png" width="538px" alt="chart"/>
           </Image>
@@ -89,5 +107,5 @@ export default () => (
         </Col>
       </Row>
     </Grid>
-  </Section>
+  </Wrapper>
 );

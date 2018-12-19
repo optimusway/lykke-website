@@ -7,11 +7,26 @@ const MarketList = styled.div`
   background-color: ${p => p.theme.colors.greyPale};
   padding-top: ${rem('9px')};
   padding-bottom: ${rem('9px')};
+  
+  @media all and (max-width: 991px) {
+    background-color: transparent;
+    position: absolute;
+    right: 0;
+    top: ${rem('8px')};
+  }
+  
+  @media all and (max-width: 767px) {
+    top: 4px;
+  }
 `;
 
 const Wrapper = styled.div`
   padding-left: ${rem('12px')};
   padding-right: ${rem('12px')};
+  
+  @media all and (max-width: 991px) {
+    padding: 0;
+  }
 `;
 
 const Title = styled.div`
@@ -107,37 +122,37 @@ export default () => (
               </Row>
             </ListItem>
           </Col>
-          <Col>
+          <Col className="d-none d-lg-block">
             <ListItem>
               <Title>Bitcoin</Title>
               <Desc>$ 2280.71 <Value green>+200.14%</Value></Desc>
             </ListItem>
           </Col>
-          <Col>
+          <Col className="d-none d-lg-block">
             <ListItem>
               <Title>Ethereum</Title>
               <Desc>$ 2280.71 <Value red>-2.14%</Value></Desc>
             </ListItem>
           </Col>
-          <Col>
+          <Col className="d-none d-lg-block">
             <ListItem>
               <Title>LKK</Title>
               <Desc>$ 2280.71 <Value green>+2.14%</Value></Desc>
             </ListItem>
           </Col>
-          <Col>
+          <Col className="d-none d-lg-block">
             <ListItem>
               <Title>Litecoin</Title>
               <Desc>$ 2280.71 <Value red>-2.14%</Value></Desc>
             </ListItem>
           </Col>
-          <Col>
+          <Col className="d-none d-lg-block">
             <ListItem>
               <Title>Dash</Title>
               <Desc>$ 2280.71 <Value green>+2.14%</Value></Desc>
             </ListItem>
           </Col>
-          <Col>
+          <Col className="d-none d-lg-block">
             <ListItem>
               <Title>Ethereum Classic</Title>
               <Desc>$ 2280.71 <Value green>+2.14%</Value></Desc>

@@ -9,6 +9,13 @@ const Header = styled.header`
   flex-shrink: 0;
   padding-top: ${rem('22px')};
   padding-bottom: ${rem('22px')};
+  
+  @media all and (max-width: 991px) {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid ${p => p.theme.colors.greyLight};
+    background-color: ${p => p.theme.colors.white};
+  }
 `;
 
 const Wrapper = styled.div`
@@ -19,10 +26,10 @@ export default () => (
   <Header>
     <Wrapper as={Grid}>
       <Row className="justify-content-between align-items-center">
-        <Col sm={9}>
+        <Col className="col-sm-auto">
           <Nav/>
         </Col>
-        <Col sm={3} className="text-right">
+        <Col className="col-sm-auto text-right">
           <HeaderAccount />
         </Col>
       </Row>

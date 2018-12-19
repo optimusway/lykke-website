@@ -6,6 +6,10 @@ const GlobalStyle = createGlobalStyle`
   
   html {
     font-size: ${p => p.theme.fontSize.primary};
+    
+    @media all and (min-width: 768px) and (max-width: 1024px) {
+      font-size: 14px;
+    }
   }
   
   body {
@@ -52,6 +56,12 @@ const GlobalStyle = createGlobalStyle`
     font-size: ${p => rem(p.theme.fontSize.h1)};
     line-height: 1.2;
     margin-bottom: ${rem('24px')};
+    
+    @media all and (max-width: 767px) {
+      font-size: 40px;
+      line-height: 1.18;
+      margin-bottom: 10px;
+    }
   }
   
   h2, .h2 {
@@ -62,6 +72,10 @@ const GlobalStyle = createGlobalStyle`
     font-size: ${p => rem(p.theme.fontSize.h3)};
     line-height: normal;
     margin-bottom: ${rem('24px')};
+    
+    @media all and (max-width: 767px) {
+      font-size: 28px;
+    }
   }
   
   h4, .h4 {
@@ -87,6 +101,10 @@ const GlobalStyle = createGlobalStyle`
   .justify-content-between {
     justify-content: space-between!important;
   }
+  
+  .justify-content-center {
+    justify-content: center!important;
+  }
     
   .justify-content-end {
     justify-content: flex-end!important;
@@ -94,6 +112,10 @@ const GlobalStyle = createGlobalStyle`
   
   .align-items-center {
     align-items: center!important;
+  }
+  
+  .align-self-end {
+    align-self: flex-end!important;
   }
   
   .text-right {
@@ -106,6 +128,57 @@ const GlobalStyle = createGlobalStyle`
   
   .clear-height {
     line-height: 0;
+  }
+  
+  .d-none {
+    display: none!important;
+  }
+  
+  .d-block {
+    display: block!important;
+  }
+  
+  .d-md-block {
+    @media (min-width: 768px) {
+      display: block!important;
+    }
+  }
+  
+  .d-xs-block {
+    @media (min-width: 321px) {
+      display: block!important;
+    }
+  }
+  
+  .d-xs-none {
+    @media (min-width: 321px) {
+      display: none!important;
+    }
+  }
+  
+  .d-md-none {
+    @media (min-width: 768px) {
+      display: none!important;
+    }
+  }
+  
+  .d-lg-block {
+    @media (min-width: 992px) {
+      display: block!important;
+    }
+  }
+  
+  .d-lg-none {
+    @media (min-width: 992px) {
+      display: none!important;
+    }
+  }
+  
+  .container {
+    @media all and (max-width: 767px) {
+      width: 360px;
+      max-width: 100%;
+    }
   }
 `;
 

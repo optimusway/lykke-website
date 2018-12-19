@@ -9,16 +9,6 @@ export const Disclaimer = styled.div`
   line-height: 1.43;
   color: ${p => p.theme.colors.grey};
   
-  ${Row} {
-    margin-left: ${rem('-20px')};
-    margin-right: ${rem('-20px')};
-  }
-  
-  ${Col} {
-    padding-left: ${rem('20px')};
-    padding-right: ${rem('20px')}
-  }
-  
   p {
     margin-bottom: .63rem;
     
@@ -31,13 +21,30 @@ export const Disclaimer = styled.div`
       }
     }
   }
+  
+  @media all and (max-width: 767px) {
+    font-size: 11px;
+    line-height: 1.45;
+  }
+  
+  @media all and (min-width: 992px) {
+    ${Row} {
+      margin-left: ${rem('-20px')};
+      margin-right: ${rem('-20px')};
+    }
+    
+    ${Col} {
+      padding-left: ${rem('20px')};
+      padding-right: ${rem('20px')}
+    }
+  }
 `;
 
 export default () => (
   <Disclaimer>
-    <Grid>
+    <Grid className="container">
       <Row>
-        <Col sm={6}>
+        <Col xs={12} sm={6}>
           <p>Trading financial products involves significant risk and can result in the loss of your invested capital. You should not invest more
             than you can afford to lose and should ensure that you fully understand the risks involved. Trading leveraged products may not be suitable
             for all investors. Before trading, please take into consideration your level of experience, investment objectives and seek independent financial
@@ -48,7 +55,7 @@ export default () => (
             African countries. Lykke services are not available to the residents of US, Canada, Japan, Australia. For full list of countries please refer to the&nbsp;
             <Link href="#"><a>Terms of Use</a></Link>.</p>
         </Col>
-        <Col sm={6}>
+        <Col xs={12} sm={6}>
           <p>Lykke Corp (Lykke AG) is registered in Zurich, Switzerland. Identification number CHE-345.258.499. <Link href="#"><a>Commercial register</a></Link>.</p>
           <p>Lykke Corp UK Limited is a company registered in England number 10093552 limited by shares with its registered office at 86-90 Paul Street, London EC2A 4NE</p>
           <p>Lykke Vanuatu Limited is regulated by the Vanuatu Financial Services Commission (VFSC) of Vanuatu with Company number 17909</p>

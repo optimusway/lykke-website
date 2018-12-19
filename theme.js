@@ -26,11 +26,12 @@ const corners = {
 
 const light = {
   flexboxgrid: {
+    outerMargin: 1,
     container: {
       xs: false,
       sm: false,
       md: false,
-      lg: 80.25
+      lg: 78.4
     },
     breakpoints: {
       lg: 80.25

@@ -6,7 +6,8 @@ import {placeholder,rem} from 'polished';
 
 export const Lead = styled.section`
   padding-top: ${rem('80px')};
-  padding-bottom: 0;
+  padding-bottom: ${rem('40px')};
+  position: relative;
   
   h1 {
     margin-top: ${rem('6px')};
@@ -16,6 +17,26 @@ export const Lead = styled.section`
   .lead {
     margin-bottom: ${rem('70px')};
   }
+    
+  @media all and (max-width: 767px) {
+    padding-top: 40px;
+    padding-bottom: 120px;
+    text-align: center;
+    
+    h1 {
+      margin-top: 0;
+      margin-bottom: 7px;
+    }
+    
+    .lead {
+      margin-bottom: ${rem('10px')};
+    }
+  }
+  
+  @media all and (max-width: 420px) {
+    padding-top: 10px;
+  }
+
 `;
 
 export const Image = styled.div`
@@ -24,6 +45,19 @@ export const Image = styled.div`
   z-index: -1;
   pointer-events: none;
   user-select: none;
+  
+  @media all and (max-width: 767px) {
+    margin: 0 -80px;
+    
+    img {
+      max-width: 100%;
+    }
+  }
+  
+  @media all and (max-width: 320px) {
+     margin: 0 0 0 -32%;
+  }
+
 `;
 
 export const InputGroup = styled.div`
@@ -61,45 +95,80 @@ export const FormSubscribe = styled.form`
   ${Col} {
     padding: 0;
   }
-  
-  ${Input} {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-  }
+ 
   
   button {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
+    width: 100%;
     padding: ${rem('18px')} ${rem('25px')};
+    height: ${rem('54px')};
+  }
+  
+  @media all and (max-width: 767px) {
+    position: absolute;
+    bottom: 0;
+    padding: 0 15px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 360px;
+    max-width: 100%;
+    
+    button {
+      box-shadow: 0 4px 15px 0 rgba(25, 112, 236, 0.5);
+    }
+    
+    ${Input} {
+      text-align: center;
+    }
+    
+    ${InputGroup} {
+      margin-bottom: 12px;
+    }
+  }
+  
+  @media all and (min-width: 768px) {
+    box-shadow: 0 4px 15px 0 rgba(25, 112, 236, 0.5);
+    border-radius: ${p => p.theme.corners.round};
+    
+    ${Input} {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    
+    button {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
   }
 `;
 
 export default () => (
   <Lead>
-    <Grid>
+    <Grid className="container">
       <Row>
-        <Col md={6}>
-          <h1>Become a Bitcoin owner</h1>
+        <Col xs={12} sm={7} md={6}>
+          <h1>Become a <br className="d-md-none"/> Bitcoin&nbsp;owner</h1>
           <p className="lead">
-            Lykke is the easiest and secure way to buy, exchange and sell cryptos.<br/>
+            <span className="d-none d-md-block">Lykke is the easiest and secure way to buy, exchange and sell cryptos.</span>
             <b>No hidden costs. Swiss quality</b>.
           </p>
           <FormSubscribe>
             <Row>
-              <Col xs={9}>
+              <Col xs={12} sm={8} lg={9}>
                 <InputGroup>
                   <Input typ  e="email" placeholder="Enter your Email to get started"/>
                 </InputGroup>
               </Col>
-              <Col xs={3}>
+              <Col xs={12} sm={4} lg={3}>
                 <Button block>Get Started</Button>
               </Col>
             </Row>
           </FormSubscribe>
         </Col>
-        <Col md={6}>
+        <Col xs={12} sm={5} md={6}>
           <Image>
-            <img src="/static/images/hero.jpg" width={778} />
+            <img src="/static/images/hero-mobile.jpg" width={229} className="d-xs-none" />
+            <img src="/static/images/hero.jpg" width={778} className="d-none d-xs-block" />
           </Image>
         </Col>
       </Row>

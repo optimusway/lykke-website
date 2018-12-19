@@ -7,9 +7,14 @@ export const Section = styled.section`
   padding-top: ${rem('80px')};
   padding-bottom: ${rem('80px')};
   
+  @media all and (max-width: 767px) {
+    padding-top: 70px;
+    padding-bottom: 40px;
+  }
+  
   ${(p) => p.nopadding &&
     css`
-      padding: 0;
+      padding: 0 !important;
     `
   }
   
@@ -33,7 +38,7 @@ export const SectionHeader = styled.div`
   max-width: 100%;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: ${rem('40px')};
+  margin-bottom: ${rem('42px')};
   
   p {
     width: ${rem('590px')};
