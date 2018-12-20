@@ -7,7 +7,6 @@ const Wrapper = styled.div`
   flex-shrink: 0;
   
   @media all and (max-width: 991px) {
-    display:none;
   }
 `;
 

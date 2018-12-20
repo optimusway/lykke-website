@@ -20,6 +20,10 @@ const Wrapper = styled.div`
 
 const Main = styled.main`
   flex-grow: 1;
+  
+  @media all and (max-width: 991px) {
+    padding-top: 58px;
+  }
 `;
 
 const Layout = ({children}) => (

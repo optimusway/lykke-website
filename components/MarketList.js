@@ -10,9 +10,18 @@ const MarketList = styled.div`
   
   @media all and (max-width: 991px) {
     background-color: transparent;
-    position: absolute;
+    position: fixed;
+    z-index: 201;
     right: 0;
     top: ${rem('8px')};
+    transition: 
+      opacity ${p => p.theme.transition.primary},
+      visibility ${p => p.theme.transition.primary};
+
+    .menu-opened & {
+      opacity: 0;
+      visibility: 0;
+    }
   }
   
   @media all and (max-width: 767px) {

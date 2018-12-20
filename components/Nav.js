@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Link from 'next/link';
 import {Row, Col} from 'react-styled-flexboxgrid';
 import styled, {css} from 'styled-components';
 import Button from './Button'
+import HeaderAccount from './HeaderAccount';
 
 import {rem} from "polished/lib/index";
 
@@ -12,7 +13,38 @@ const Wrapper = styled.div`
 
 const Nav = styled.nav`
   @media all and (max-width: 991px) {
-    display:none;
+    position: fixed;
+    left: 0;
+    top: 59px;
+    right: 0;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    z-index: 220;
+    background-color: ${p => p.theme.colors.white};
+    transition: 
+      height ${p => p.theme.transition.primary},
+      visibility ${p => p.theme.transition.primary};
+      
+    .align-items-center {
+      margin: 0;
+    }
+    
+    ${(p) => p.show &&
+      css`
+        visibility: visible;
+        height: calc(100% - 58px);
+       
+      `
+    }
+  }
+`;
+
+const NavInner = styled.nav`
+  @media all and (max-width: 991px) {
+    padding: 30px 16px;
+    overflow: auto;
+    height: 100%;
   }
 `;
 
@@ -28,10 +60,43 @@ const Logo = styled.div`
   @media all and (max-width: 991px) {
     width: 30px;
     overflow: hidden;
+    transition: width ${p => p.theme.transition.primary};
     
     img {
       margin-top: 0;
       width: 94px;
+    }
+    
+    .menu-opened & {
+      width: 94px;
+    }
+  }
+`;
+
+const AccountContainer = styled.div`  
+  width: 320px;
+  max-width: 100%;
+  text-align: center;
+    margin-top: 40px;
+  
+  .justify-content-end {
+    justify-content: flex-start!important;
+    flex-direction: column-reverse;
+    
+    > div {
+      flex: 0 0 100%;
+    }
+    
+    a[role=button] {
+      width: 100%;
+      padding: 19px;
+      margin-bottom: 20px;
+    }
+  }
+  
+  @media all and (max-width: 991px) {
+  &.d-md-none {
+      display: block !important;
     }
   }
 `;
@@ -45,7 +110,7 @@ const NavItemInner = styled.div`
     display: block;
     color: inherit;
     text-decoration: none;
-    padding: ${rem('20px')} ${rem('14px')} ${rem('18px')};
+    padding: ${rem('20px')} ${rem('20px')} ${rem('18px')} ${rem('14px')};
     border: 1px solid transparent;
     border-radius:  ${p => p.theme.corners.primary};
     transition: color ${p => p.theme.transition.primary};
@@ -53,11 +118,17 @@ const NavItemInner = styled.div`
     img {
       display: inline-block;
       vertical-align: middle;
-      margin: ${rem('-12px')} ${rem('5px')} ${rem('-10px')} ${rem('-5px')};
+      margin: ${rem('-12px')} ${rem('5px')} ${rem('-10px')} 0;
     }
 
     &:hover {
       color: ${p => p.theme.colors.grey};
+    }
+  }
+  
+  @media all and (max-width: 991px) {
+    a {
+      display: inline-block;
     }
   }
 `;
@@ -77,6 +148,12 @@ const NavItem = styled.div`
         }
       }
     `
+  }
+  
+  @media all and (max-width: 991px) {
+    flex: none;
+    width: 100%;
+    padding: 0;
   }
 `;
 
@@ -144,53 +221,81 @@ const ButtonMenu = styled(Button)`
   }
 `;
 
-export default () => (
-  <Wrapper>
-    <Row className="align-items-center">
-      <Col className="col-xs-auto d-lg-none">
-        <ButtonMenu flat/>
-      </Col>
-      <Col className="col-xs-auto">
-        <Logo>
-          <Link href="/">
-            <a><img src="/static/logo-main.svg" alt="Lykke" width="115px"/></a>
-          </Link>
-        </Logo>
-      </Col>
-      <Col>
-        <Nav>
-          <Row className="align-items-center">
-            <NavItem as={Col} active>
-              <NavItemInner>
-                <Link href="#">
-                  <a><img src="/static/lykke_wallet_logo.svg" alt="Lykke" width="36px"/> Lykke Wallet</a>
-                </Link>
-              </NavItemInner>
-            </NavItem>
-            <NavItem as={Col}>
-              <NavItemInner>
-                <Link href="#">
-                  <a target="_blank"><img src="/static/lykke_exchange_logo.svg" alt="Lykke" width="36px"/> Lykke Trade</a>
-                </Link>
-              </NavItemInner>
-            </NavItem>
-            <NavItem as={Col}>
-              <NavItemInner>
-                <Link href="#">
-                  <a target="_blank">CBCS Magazine</a>
-                </Link>
-              </NavItemInner>
-            </NavItem>
-            <NavItem as={Col}>
-              <NavItemInner dropdown>
-                <Link href="#">
-                  <a>About</a>
-                </Link>
-              </NavItemInner>
-            </NavItem>
-          </Row>
-        </Nav>
-      </Col>
-    </Row>
-  </Wrapper>
-);
+export default class Header extends Component {
+  constructor(props) {
+    super(props);
+
+    this.openMenu = this.openMenu.bind(this);
+
+    this.state = {
+      isOpen: false,
+    };
+  }
+
+  openMenu() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+
+    document.body.classList.toggle('menu-opened')
+  }
+
+  render() {
+    return (
+      <Wrapper>
+        <Row className="align-items-center">
+          <Col className="col-xs-auto d-lg-none">
+            <ButtonMenu flat onClick={this.openMenu} active={this.state.isOpen}/>
+          </Col>
+          <Col className="col-xs-auto">
+            <Logo>
+              <Link href="/">
+                <a><img src="/static/logo-main.svg" alt="Lykke" width="115px"/></a>
+              </Link>
+            </Logo>
+          </Col>
+          <Col>
+            <Nav show={this.state.isOpen}>
+              <NavInner>
+                <Row className="align-items-center">
+                  <NavItem as={Col} active>
+                    <NavItemInner>
+                      <Link href="#">
+                        <a><img src="/static/lykke_wallet_logo.svg" alt="Lykke" width="36px"/> Lykke Wallet</a>
+                      </Link>
+                    </NavItemInner>
+                  </NavItem>
+                  <NavItem as={Col}>
+                    <NavItemInner>
+                      <Link href="#">
+                        <a target="_blank"><img src="/static/lykke_exchange_logo.svg" alt="Lykke" width="36px"/> Lykke Trade</a>
+                      </Link>
+                    </NavItemInner>
+                  </NavItem>
+                  <NavItem as={Col}>
+                    <NavItemInner>
+                      <Link href="#">
+                        <a target="_blank">CBCS Magazine</a>
+                      </Link>
+                    </NavItemInner>
+                  </NavItem>
+                  <NavItem as={Col}>
+                    <NavItemInner dropdown>
+                      <Link href="#">
+                        <a>About</a>
+                      </Link>
+                    </NavItemInner>
+                  </NavItem>
+                </Row>
+
+                <AccountContainer className="d-md-none">
+                  <HeaderAccount />
+                </AccountContainer>
+              </NavInner>
+            </Nav>
+          </Col>
+        </Row>
+      </Wrapper>
+    )
+  }
+}

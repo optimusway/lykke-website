@@ -7,7 +7,7 @@ const GlobalStyle = createGlobalStyle`
   html {
     font-size: ${p => p.theme.fontSize.primary};
     
-    @media all and (min-width: 768px) and (max-width: 1024px) {
+    @media all and (min-width: 768px) and (max-width: 1100px) {
       font-size: 14px;
     }
   }
@@ -22,6 +22,10 @@ const GlobalStyle = createGlobalStyle`
     
     * {
       box-sizing: border-box;
+    }
+    
+    &.menu-opened {
+      overflow: hidden;
     }
   }
   
@@ -159,6 +163,12 @@ const GlobalStyle = createGlobalStyle`
   .d-md-none {
     @media (min-width: 768px) {
       display: none!important;
+    }
+  }
+  
+  .d-md-block {
+    @media (min-width: 768px) {
+      display: block!important;
     }
   }
   
