@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import {Grid, Row, Col} from 'react-styled-flexboxgrid';
-import Button from '../Button'
 import {placeholder,rem} from 'polished';
+import {isMobile} from 'react-device-detect';
+import Button from '../Button'
 
 export const Lead = styled.section`
   padding-top: ${rem('80px')};
@@ -145,14 +146,14 @@ export default () => (
         <Col xs={12} sm={7} md={6}>
           <h1>Become a <br className="d-md-none"/> Bitcoin&nbsp;owner</h1>
           <p className="lead">
-            <span className="d-none d-md-block">Lykke is the easiest and secure way to buy, exchange and sell cryptos.</span>
+            {!isMobile && <span className="d-none d-md-block">Lykke is the easiest and secure way to buy, exchange and sell cryptos.</span>}
             <b>No hidden costs. Swiss quality</b>.
           </p>
           <FormSubscribe>
             <Row>
               <Col xs={12} sm={8} lg={9}>
                 <InputGroup>
-                  <Input typ  e="email" placeholder="Enter your Email to get started"/>
+                  <Input type="email" placeholder="Enter your Email to get started"/>
                 </InputGroup>
               </Col>
               <Col xs={12} sm={4} lg={3}>
@@ -163,8 +164,10 @@ export default () => (
         </Col>
         <Col xs={12} sm={5} md={6}>
           <Image>
-            <img src="/static/images/hero-mobile.jpg" width={411} className="d-md-none" />
-            <img src="/static/images/hero.jpg" width={778} className="d-none d-md-block" />
+            {isMobile ?
+              <img src="/static/images/hero-mobile.jpg" width={411} className="d-md-none" /> :
+              <img src="/static/images/hero.jpg" width={778} className="d-none d-md-block" />
+            }
           </Image>
         </Col>
       </Row>

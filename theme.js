@@ -14,7 +14,8 @@ const colors = {
   orangeRed: '#ff3e2e',
   green: '#13b72a',
   blank: '#e8edf2',
-  transparent: 'transparent'
+  transparent: 'transparent',
+  inverse: '#25262d'
 }
 
 const corners = {

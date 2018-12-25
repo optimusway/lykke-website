@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Link from 'next/link';
+import Link from './Link';
 import {Row, Col} from 'react-styled-flexboxgrid';
 import styled, {css} from 'styled-components';
 import {isBrowser} from 'react-device-detect';
@@ -137,7 +137,7 @@ const NavItem = styled.div`
     padding: ${rem('20px 20px 18px 14px')};
     border: 1px solid transparent;
     border-radius:  ${p => p.theme.corners.primary};
-    transition: color ${p => p.theme.transition.primary};
+    transition: all ${p => p.theme.transition.primary};
     
     img {
       display: inline-block;
@@ -149,22 +149,18 @@ const NavItem = styled.div`
       color: ${p => p.theme.colors.grey};
     }
     
+    &.active {
+      color: ${p => p.theme.colors.primary};
+      border-color: ${p => p.theme.colors.primary};
+      
+      &:hover {
+        color: ${p => p.theme.colors.primary};
+      }
+    }
+    
     @media all and (max-width: 991px) {
       display: inline-block;
     }
-  }
-  
-  ${(p) => p.active &&
-    css`
-      a {
-        color: ${p => p.theme.colors.primary};
-        border-color: ${p => p.theme.colors.primary};
-        
-        &:hover {
-          color: ${p => p.theme.colors.primary};
-        }
-      }
-    `
   }
   
   ${(p) => p.dropdown &&
@@ -325,17 +321,17 @@ export default class Header extends Component {
             <Nav show={this.state.isOpen}>
               <NavInner>
                 <Row className="align-items-center">
-                  <NavItem as={Col} active>
+                  <NavItem as={Col}>
                     <NavItemInner>
-                      <Link href="#">
+                      <Link prefetch activeClassName="active" href="/">
                         <a><img src="/static/lykke_wallet_logo.svg" alt="Lykke" width="36px"/> Lykke Wallet</a>
                       </Link>
                     </NavItemInner>
                   </NavItem>
                   <NavItem as={Col}>
                     <NavItemInner>
-                      <Link href="#">
-                        <a target="_blank"><img src="/static/lykke_exchange_logo.svg" alt="Lykke" width="36px"/> Lykke Trade</a>
+                      <Link prefetch activeClassName="active" href="/trade">
+                        <a><img src="/static/lykke_exchange_logo.svg" alt="Lykke" width="36px"/> Lykke Trade</a>
                       </Link>
                     </NavItemInner>
                   </NavItem>

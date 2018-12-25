@@ -51,7 +51,8 @@ export const AccordionItem = styled.div`
   position: relative;
   cursor: pointer;
   margin-bottom: 83px;
-  
+  color: ${p => p.theme.colors.black};
+
   &:last-child {
     margin-bottom: 30px;
   }

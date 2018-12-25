@@ -28,6 +28,7 @@ export const Chips = styled.div`
 export const FeatureItem = styled.div`
   text-align: center;
   position: relative;
+  color: ${p => p.theme.colors.black};
   box-shadow: ${p => p.theme.boxShadow.light};
   background-color: ${p => p.theme.colors.white};
   border-radius: ${p => p.theme.corners.secondary};
