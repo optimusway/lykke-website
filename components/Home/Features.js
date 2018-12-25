@@ -14,8 +14,10 @@ export const AccordionTitle = styled.h4`
   line-height: normal;
   margin-top: ${rem('6px')};
   margin-bottom: 0;
+  color: inherit;
   transition: all ${p => p.theme.transition.primary};
-  
+  color: ${p => p.theme.colors.black};
+
   @media all and (max-width: 767px) {
     margin-bottom: 10px;
   }
@@ -23,8 +25,8 @@ export const AccordionTitle = styled.h4`
 
 export const Accordion = styled.div`
   margin-top: ${rem('98px')};
-  margin-bottom: ${rem('40spx')};
-  
+  margin-bottom: ${rem('40px')};
+
   @media all and (max-width: 767px) {
     margin-top: 0;
   }
@@ -49,15 +51,14 @@ export const AccordionText = styled.div`
 export const AccordionItem = styled.div`
   overflow: hidden;
   position: relative;
-  cursor: pointer;
   margin-bottom: 83px;
-  color: ${p => p.theme.colors.black};
 
   &:last-child {
     margin-bottom: 30px;
   }
   
   @media all and (min-width: 768px) {
+    cursor: pointer;
     margin-bottom: -2px;
     padding: ${rem('24px')} ${rem('30px')};
     border: 1px solid #e0e0e0;
