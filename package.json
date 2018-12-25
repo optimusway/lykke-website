@@ -10,6 +10,7 @@
     "next": "^7.0.2",
     "polished": "^2.3.0",
     "react": "^16.6.0",
+    "react-device-detect": "^1.6.1",
     "react-dom": "^16.6.0",
     "react-styled-flexboxgrid": "^2.6.0",
     "react-truncate": "^2.4.0",
