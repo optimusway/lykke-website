@@ -11,6 +11,8 @@ export const SectionLink = styled.div`
   >button, >a {
     width: 100%;
     max-width: 340px;
+    padding-top: ${rem('17px')};
+    padding-bottom: ${rem('17px')};
     font-size: ${rem('16px')};
   }
 `;

@@ -109,11 +109,11 @@ const light = {
         backgroundColorActive: mix(0.1, colors.primary, colors.white),
         backgroundColorDisabled: colors.transparent,
         backgroundColorLoading: colors.transparent,
-        border: `1px solid ${colors.primary}`,
-        boxShadow: 'none',
-        boxShadowHover: 'none',
-        boxShadowActive: 'none',
-        boxShadowDisabled: 'none'
+        border: 'none',
+        boxShadow: `inset 0 0 0 1px ${colors.primary}`,
+        boxShadowHover: `inset 0 0 0 1px ${colors.primary}`,
+        boxShadowActive: `inset 0 0 0 1px ${colors.primary}`,
+        boxShadowDisabled: `inset 0 0 0 1px ${colors.greyPale}`,
       },
       styleFlat: {
         color: colors.primary,

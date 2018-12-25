@@ -38,7 +38,7 @@ const Color = p => {
     background-color: ${p => p.theme.button[color][style].backgroundColor};
     box-shadow: ${p => p.theme.button[color][style].boxShadow};
     border: ${p => p.theme.button[color][style].border};
-    transition: ${p => p.theme.transition.primary};
+    transition: all ${p => p.theme.transition.primary};
 
     @media (min-width: ${p => p.theme.media.tablet}) {
     ${(p) => !p.disabled &&
@@ -79,7 +79,7 @@ export const ButtonBlank = styled.button`
   overflow: hidden;
   font-weight: 600;
   font-size: ${rem('18px')};
-  padding: ${rem('14px')} ${rem('25px')};
+  padding: ${rem('16px')} ${rem('25px')};
   background-color: transparent;
   appearance: none;
 

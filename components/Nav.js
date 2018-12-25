@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Link from 'next/link';
 import {Row, Col} from 'react-styled-flexboxgrid';
 import styled, {css} from 'styled-components';
+import {isBrowser} from 'react-device-detect';
 import Button from './Button'
 import HeaderAccount from './HeaderAccount';
 
@@ -105,12 +106,35 @@ const NavItemInner = styled.div`
   font-weight: 600;
   font-size: ${rem('14px')};
   text-transform: uppercase;
+`;
+
+const DropdownMenu = styled.div`
+  position: absolute;
+  right: ${rem('20px')};
+  min-width: ${rem('205px')};
+  border-radius: ${rem('8px')};
+  box-shadow: 0 0 17px 0 rgba(0, 0, 0, 0.11);
+  background-color: ${p => p.theme.colors.white};
+  opacity: 0;
+  visibility: hidden;
+  transform: translate3d(0,-10px,0);
+  transition: all ${p => p.theme.transition.primary};
+  
+  @media all and (max-width: 991px) {
+    display: none;
+  }
+`;
+
+const NavItem = styled.div`
+  padding-left: ${rem('4px')};
+  padding-right: ${rem('4px')};
+  position: relative;
   
   a {
     display: block;
     color: inherit;
     text-decoration: none;
-    padding: ${rem('20px')} ${rem('20px')} ${rem('18px')} ${rem('14px')};
+    padding: ${rem('20px 20px 18px 14px')};
     border: 1px solid transparent;
     border-radius:  ${p => p.theme.corners.primary};
     transition: color ${p => p.theme.transition.primary};
@@ -120,22 +144,15 @@ const NavItemInner = styled.div`
       vertical-align: middle;
       margin: ${rem('-12px')} ${rem('5px')} ${rem('-10px')} 0;
     }
-
+  
     &:hover {
       color: ${p => p.theme.colors.grey};
     }
-  }
-  
-  @media all and (max-width: 991px) {
-    a {
+    
+    @media all and (max-width: 991px) {
       display: inline-block;
     }
   }
-`;
-
-const NavItem = styled.div`
-  padding-left: ${rem('4px')};
-  padding-right: ${rem('4px')};
   
   ${(p) => p.active &&
     css`
@@ -150,10 +167,41 @@ const NavItem = styled.div`
     `
   }
   
+  ${(p) => p.dropdown &&
+    css`
+      &:hover,
+      &:focus {
+        ${DropdownMenu} {
+          opacity: 1;
+          visibility: visible;
+          transform: translate3d(0,0,0)
+        }
+      }
+    `
+  }
+  
   @media all and (max-width: 991px) {
     flex: none;
     width: 100%;
     padding: 0;
+  }
+`;
+
+const DropdownMenuInner = styled.div`
+  padding: ${rem('12px 0px')};
+`;
+
+const DropdownItem = styled.div`
+  a {
+    font-size: ${rem('16px')};
+    padding: ${rem('12px 22px')};
+    letter-spacing: -0.2px;
+    line-height: normal;
+    display:block;
+    
+    &:hover {
+      color: ${p => p.theme.colors.grey};
+    }
   }
 `;
 
@@ -221,6 +269,25 @@ const ButtonMenu = styled(Button)`
   }
 `;
 
+const Caret = styled.span`
+  &:after {
+    display: inline-block;
+    margin-left: ${rem('10px')};
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+    content: "";
+    border-top: .4em solid;
+    border-right: .3em solid transparent;
+    border-bottom: 0;
+    border-left: .3em solid transparent;
+    
+    @media all and (max-width: 991px) {
+      display: none;
+    }
+  }  
+`;
+
 export default class Header extends Component {
   constructor(props) {
     super(props);
@@ -279,12 +346,40 @@ export default class Header extends Component {
                       </Link>
                     </NavItemInner>
                   </NavItem>
-                  <NavItem as={Col}>
-                    <NavItemInner dropdown>
+                  <NavItem as={Col} dropdown>
+                    <NavItemInner >
                       <Link href="#">
-                        <a>About</a>
+                        <a>
+                          About
+                          {isBrowser && <Caret/>}
+                        </a>
                       </Link>
                     </NavItemInner>
+
+                    {isBrowser && (
+                      <DropdownMenu>
+                        <DropdownMenuInner>
+                          <DropdownItem>
+                            <Link href="#"><a>Lykke Team</a></Link>
+                          </DropdownItem>
+                          <DropdownItem>
+                            <Link href="#"><a>About Lykke Index</a></Link>
+                          </DropdownItem>
+                          <DropdownItem>
+                            <Link href="#"><a>Invest</a></Link>
+                          </DropdownItem>
+                          <DropdownItem>
+                            <Link href="#"><a>News</a></Link>
+                          </DropdownItem>
+                          <DropdownItem>
+                            <Link href="#"><a>Careers</a></Link>
+                          </DropdownItem>
+                          <DropdownItem>
+                            <Link href="#"><a>FAQ</a></Link>
+                          </DropdownItem>
+                        </DropdownMenuInner>
+                      </DropdownMenu>
+                    )}
                   </NavItem>
                 </Row>
 

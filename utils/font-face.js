@@ -23,7 +23,7 @@ const GlobalFontFace = createGlobalStyle`
   ${fontFace({
       'fontFamily': 'Proxima Nova',
       'fontWeight': '400',
-      'fontFilePath': 'static/fonts/ProximaNovaRegular',
+      'fontFilePath': 'static/fonts/ProximaNova-Regular',
       'fileFormats': ['eot','woff','ttf','svg']
     }
   )}
@@ -39,7 +39,7 @@ const GlobalFontFace = createGlobalStyle`
   ${fontFace({
       'fontFamily': 'Proxima Nova',
       'fontWeight': '700',
-      'fontFilePath': 'static/fonts/ProximaNovaBold',
+      'fontFilePath': 'static/fonts/ProximaNova-Bold',
       'fileFormats': ['eot','woff','ttf','svg']
     }
   )}
