@@ -7,7 +7,8 @@ import {
   Lead,
   InputGroup,
   Input,
-  FormSubscribe} from '../Home/Lead'
+  FormSubscribe
+} from '../Home/Lead'
 
 export const Image = styled.div`
   position: relative;

@@ -35,7 +35,6 @@ export const Lead = styled.section`
   @media all and (max-width: 420px) {
     padding-top: 10px;
   }
-
 `;
 
 export const Image = styled.div`
@@ -52,7 +51,6 @@ export const Image = styled.div`
       max-width: 100%;
     }
   }
-
 `;
 
 export const InputGroup = styled.div`

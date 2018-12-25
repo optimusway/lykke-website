@@ -10,13 +10,11 @@ import Apps from './Apps';
 
 const Footer = styled.footer`
   flex-shrink: 0;
-  padding-top: ${rem('25px')};
   padding-bottom: ${rem('25px')};
 `;
 
 const Top = styled.section`
   padding: ${rem('35px')} 0;  
-  border-top: 1px solid ${p => p.theme.colors.greyLight};
   
   @media all and (max-width: 767px) {
     padding: 30px 0;  

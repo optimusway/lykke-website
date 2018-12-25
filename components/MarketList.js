@@ -76,7 +76,7 @@ const Desc = styled.div`
   }
 `;
 
-const Label = styled.span`
+export const Label = styled.span`
   font-weight: 600;
   font-size: ${rem('12px')};
   letter-spacing: 0.8px;
@@ -86,10 +86,26 @@ const Label = styled.span`
   padding: ${rem('5px')} ${rem('7px')} ${rem('4px')};
   color: ${p => p.theme.colors.white};
   border-radius: ${p => p.theme.corners.primary};
+  background-color: ${p => p.theme.colors.grey};
 
   ${(p) => p.green &&
     css`
       background-color: ${p => p.theme.colors.green};
+    `
+  }
+
+  ${(p) => p.red &&
+    css`
+      background-color: ${p => p.theme.colors.red};
+    `
+  }
+
+  ${(p) => p.big &&
+    css`
+      font-size: ${rem('24px')};
+      letter-spacing: 1.7px;
+      padding: ${rem('6px')} ${rem('12px')} ${rem('5px')};
+      border-radius: ${p => p.theme.corners.secondary};
     `
   }
 `;

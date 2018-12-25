@@ -96,11 +96,19 @@ const GlobalStyle = createGlobalStyle`
   .lead {
     color: ${p => p.theme.colors.grey};
     font-size: ${p => rem(p.theme.fontSize.lead)};
-  } 
+  }
   
   .text-grey {
     color: ${p => p.theme.colors.grey};
-  } 
+  }
+  
+  .text-red {
+    color: ${p => p.theme.colors.red};
+  }
+  
+  .text-green {
+    color: ${p => p.theme.colors.green};
+  }
   
   .justify-content-between {
     justify-content: space-between!important;

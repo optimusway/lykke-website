@@ -22,6 +22,12 @@ export const Disclaimer = styled.div`
     }
   }
   
+  hr {
+    margin: ${rem('25px')} 0 0 0;
+    border: 0;
+    border-bottom: 1px solid ${p => p.theme.colors.greyLight};
+  }
+  
   @media all and (max-width: 767px) {
     font-size: 11px;
     line-height: 1.45;
@@ -62,6 +68,7 @@ export default () => (
           <p>Risk warning: Trading leveraged products can result in losses that exceed your deposits. Ensure you understand the risks. Read full <Link href="#"><a>Risk Disclosure</a></Link>.</p>
         </Col>
       </Row>
+      <hr/>
     </Grid>
   </Disclaimer>
 );
