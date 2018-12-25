@@ -34,8 +34,7 @@ export default () => (
         <Col xs={12} sm={7} md={6}>
           <h1>Secure and trusted platform for pro traders.</h1>
           <p className="lead">
-            <span className="d-none d-md-block">Lykke is the easiest and secure way to buy, exchange and sell cryptos.</span>
-            <b>No hidden costs. Swiss quality</b>.
+            Buy and sell FX, crypto and other digital assets on our Swiss based exchange.
           </p>
           <FormSubscribe>
             <Row>
