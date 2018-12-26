@@ -10,9 +10,12 @@
     "next": "^7.0.2",
     "polished": "^2.3.0",
     "react": "^16.6.0",
+    "react-device-detect": "^1.6.1",
     "react-dom": "^16.6.0",
     "react-styled-flexboxgrid": "^2.6.0",
-    "styled-components": "^4.1.1"
+    "react-truncate": "^2.4.0",
+    "styled-components": "^4.1.1",
+    "styled-tools": "^1.6.0"
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.8.0"

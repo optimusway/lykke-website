@@ -1,43 +1,34 @@
 import App, {Container} from 'next/app';
-import {normalize} from 'polished';
 import React from 'react';
-import {createGlobalStyle, ThemeProvider} from 'styled-components';
+import {ThemeProvider} from 'styled-components';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import MarketList from '../components/MarketList';
 import theme from '../theme';
 import styled from 'styled-components';
 
-const GlobalStyle = createGlobalStyle`
-  ${normalize()};
-
-  html {
-    font-size: ${p => `${p.theme.fontSize}px`};
-  }
-  
-  body {
-    background: ${p => p.theme.bg};
-    font-family: ${p => p.theme.fonts.sans};
-    font-size: 1rem;
-    color: ${p => p.theme.colors.dark};
-  }
-
-  html, body, body > div {
-    height: 100%;
-  }
-`;
+import GlobalFontFace from '../utils/font-face';
+import GlobalIcons from '../utils/icons';
+import GlobalStyle from '../utils/global';
 
 const Wrapper = styled.div`
   min-height: 100%;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 `;
 
 const Main = styled.main`
   flex-grow: 1;
+  
+  @media all and (max-width: 991px) {
+    padding-top: 58px;
+  }
 `;
 
 const Layout = ({children}) => (
   <Wrapper>
+    <MarketList />
     <Header />
     <Main>{children}</Main>
     <Footer />
@@ -50,7 +41,9 @@ export default class LykkeApp extends App {
     return (
       <ThemeProvider theme={theme}>
         <Container>
+          <GlobalFontFace />
           <GlobalStyle />
+          <GlobalIcons />
           <Layout>
             <Component {...pageProps} />
           </Layout>
