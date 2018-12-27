@@ -66,7 +66,7 @@ export const Item = styled.div`
 `;
 
 export const Image = styled.div`
-  height: 294px;
+  height: 170px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -140,6 +140,10 @@ export const MainText = styled.p`
   }
 `;
 
+function createMarkup(desc) {
+  return {__html: desc};
+}
+
 export default ({posts = []}) => (
   <Section>
     <Wrapper as={Grid} className="container">
@@ -167,7 +171,7 @@ export default ({posts = []}) => (
                       style={{
                         backgroundImage: `url(${post.thumbnail})`,
                         backgroundPosition: 'left top',
-                        backgroundSize: 'cover'
+                        backgroundSize: 'contain'
                       }}
                     >
                       <a href={post.link} />
@@ -192,85 +196,6 @@ export default ({posts = []}) => (
                   </Item>
                 </Col>
               ))}
-              {/* 
-              <Col xs={12} sm={4}>
-                <Item>
-                  <Image
-                    style={{
-                      backgroundImage: 'url(http://placekitten.com/300/294)'
-                    }}
-                  >
-                    <a href="#" />
-                  </Image>
-                  <Content>
-                    <Title>
-                      <a href="#">Ethereum - rise and fall, and rise again</a>
-                    </Title>
-                    <Desc>
-                      <Truncate lines={2}>
-                        Use your credit card or swift to get your first
-                        bircoing, ether or other cryptios.
-                      </Truncate>
-                    </Desc>
-                    <ReadMore>
-                      <a href="">Continue reading</a>
-                    </ReadMore>
-                  </Content>
-                </Item>
-              </Col>
-              <Col xs={12} sm={4}>
-                <Item>
-                  <Image
-                    style={{
-                      backgroundImage: 'url(http://placekitten.com/300/294)'
-                    }}
-                  >
-                    <a href="#" />
-                  </Image>
-                  <Content>
-                    <Title>
-                      <a href="#">Single line title</a>
-                    </Title>
-                    <Desc>
-                      <Truncate lines={2}>
-                        Use your credit card or swift to get your first
-                        bircoing, ether or other cryptios.
-                      </Truncate>
-                    </Desc>
-                    <ReadMore>
-                      <a href="">Continue reading</a>
-                    </ReadMore>
-                  </Content>
-                </Item>
-              </Col>
-              <Col xs={12} sm={4}>
-                <Item>
-                  <Image
-                    style={{
-                      backgroundImage: 'url(http://placekitten.com/300/294)'
-                    }}
-                  >
-                    <a href="#" />
-                  </Image>
-                  <Content>
-                    <Title>
-                      <a href="#">Ethereum - rise and fall, and rise again</a>
-                    </Title>
-                    <Desc>
-                      <Truncate lines={2}>
-                        Use your credit card or swift to get your first
-                        bircoing, ether or other cryptios. Use your credit card
-                        or swift to get your first bircoing, ether or other
-                        cryptios.
-                      </Truncate>
-                    </Desc>
-                    <ReadMore>
-                      <a href="">Continue reading</a>
-                    </ReadMore>
-                  </Content>
-                </Item>
-              </Col>
-            */}
             </Row>
           </News>
         </Col>
@@ -278,14 +203,10 @@ export default ({posts = []}) => (
 
       <SectionLink>
         <h4>Share. Discuss. Connect.</h4>
-        <Button bordered href="#">
+        <Button bordered href="https://medium.com/scbc-magazine">
           Join our 90,000 members community
         </Button>
       </SectionLink>
     </Wrapper>
   </Section>
 );
-
-function createMarkup(desc) {
-  return {__html: desc};
-}

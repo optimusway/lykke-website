@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 import {Grid, Row, Col} from 'react-styled-flexboxgrid';
 import {rem} from 'polished';
 

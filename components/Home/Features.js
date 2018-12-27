@@ -3,6 +3,7 @@ import styled, {css} from 'styled-components';
 import {Grid, Row, Col} from 'react-styled-flexboxgrid';
 import Button from '../Button';
 import {rem} from 'polished';
+import * as config from '../../config';
 
 import {Section, SectionHeader, SectionLink} from './styled';
 
@@ -340,7 +341,7 @@ export default class extends Component {
           </TabSlider>
 
           <SectionLink>
-            <Button href="#">Get Started Now</Button>
+            <Button href={config.WALLET_URL}>Go to dashboard</Button>
           </SectionLink>
         </Grid>
       </Section>

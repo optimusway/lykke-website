@@ -9,7 +9,10 @@ const PRODUCTS = [
 
 const BASE_API_URL = 'https://apiv2.lykke.com/api';
 
+const WALLET_URL = process.env.WALLET_URL || 'https://wallet.lykke.com';
+
 module.exports = {
   PRODUCTS,
-  BASE_API_URL
+  BASE_API_URL,
+  WALLET_URL
 };

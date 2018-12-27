@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import {rem} from 'polished';
 import {Grid, Row, Col} from 'react-styled-flexboxgrid';
 
-import {Lead} from '../Home/Lead'
-import {Label} from '../MarketList'
+import {Lead} from '../Home/Lead';
+import {Label} from '../MarketList';
 
 const Section = styled(Lead)`
   @media all and (max-width: 767px) {
@@ -13,7 +13,7 @@ const Section = styled(Lead)`
 `;
 
 export const Value = styled.div`
-  margin-bottom: ${rem('15px')} ;
+  margin-bottom: ${rem('15px')};
 `;
 
 export const ValueAccent = styled.div`
@@ -29,7 +29,7 @@ export const ValueText = styled.div`
   font-size: ${rem('14px')};
   line-height: 1.2;
   color: ${p => p.theme.colors.slate};
-  
+
   @media all and (min-width: 768px) {
     span {
       display: block;
@@ -50,23 +50,23 @@ export const Info = styled.div`
 
   @media all and (min-width: 768px) {
     padding: ${rem('20px')} ${rem('24px')};
-    background-color: ${p => p.theme.colors.white}; 
+    background-color: ${p => p.theme.colors.white};
     border-radius: 8px;
-    box-shadow: ${p => p.theme.boxShadow.light}; 
+    box-shadow: ${p => p.theme.boxShadow.light};
   }
 `;
 
 export const InfoTitle = styled.div`
   font-size: ${rem('30px')};
   line-height: normal;
-  color: ${p => p.theme.colors.black}; 
+  color: ${p => p.theme.colors.black};
   margin-bottom: ${rem('25px')};
 `;
 
 export const InfoTable = styled.table`
   width: 100%;
   text-align: right;
-  
+
   tr {
     td {
       &:first-child {
@@ -74,7 +74,7 @@ export const InfoTable = styled.table`
       }
     }
   }
-  
+
   & + & {
     margin-top: ${rem('25px')};
   }
@@ -92,7 +92,8 @@ export default () => (
         <Col xs={12} sm={7} md={6}>
           <h1>Lykke Crypto Index (LyCI)</h1>
           <LeadText className="lead">
-            An index tracking the financial performance of the top 25 cryptocurrencies.
+            An index tracking the financial performance of the top 25
+            cryptocurrencies.
           </LeadText>
 
           <Value>
@@ -104,7 +105,9 @@ export default () => (
                 <ValueAccent>1180.71</ValueAccent>
               </Col>
               <Col>
-                <Label green big>+2.14%</Label>
+                <Label green big>
+                  +2.14%
+                </Label>
               </Col>
               <Col>
                 <ValueText>
@@ -114,7 +117,7 @@ export default () => (
             </Row>
           </Value>
 
-          <Graph/>
+          <Graph />
         </Col>
         <Col xs={12} sm={5} md={4}>
           <Info>
