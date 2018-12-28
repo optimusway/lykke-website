@@ -8,6 +8,8 @@ const handle = app.getRequestHandler();
 
 const config = require('../config');
 
+require('dotenv').config();
+
 app
   .prepare()
   .then(() => {
