@@ -134,7 +134,8 @@ export const FormSubscribe = styled.form`
   }
 `;
 
-const BlockLink = styled.a`
+// TODO: move me to atoms
+export const BlockLink = styled.a`
   display: inline-block;
   height: 100%;
   width: 100%;

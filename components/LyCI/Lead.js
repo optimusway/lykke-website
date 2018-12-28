@@ -85,7 +85,7 @@ export const LeadText = styled.p`
   font-size: ${rem('16px')} !important;
 `;
 
-export default () => (
+export default ({lyci}) => (
   <Section>
     <Grid className="container">
       <Row className="justify-content-between">
@@ -102,18 +102,25 @@ export default () => (
                 <ValueAccent>LyCI</ValueAccent>
               </Col>
               <Col>
-                <ValueAccent>1180.71</ValueAccent>
+                <ValueAccent>{lyci.price}</ValueAccent>
               </Col>
-              <Col>
-                <Label green big>
-                  +2.14%
-                </Label>
-              </Col>
-              <Col>
-                <ValueText>
-                  <span>24 hour change</span> Nov 22, 4:49 PM CET
-                </ValueText>
-              </Col>
+              {lyci.change && (
+                <Col>
+                  <Label dir={lyci.change > 0 ? 'up' : 'down'} big>
+                    {lyci.change.toLocaleString(undefined, {
+                      style: 'percent',
+                      minimumFractionDigits: 2
+                    })}
+                  </Label>
+                </Col>
+              )}
+              {lyci.change && (
+                <Col>
+                  <ValueText>
+                    <span>24 hour change</span> {new Date().toLocaleString()}
+                  </ValueText>
+                </Col>
+              )}
             </Row>
           </Value>
 
@@ -125,7 +132,7 @@ export default () => (
             <InfoTable>
               <tr>
                 <td>Current Value</td>
-                <td>1112.34</td>
+                <td>{lyci.price}</td>
               </tr>
               <tr>
                 <td>Return</td>

@@ -15,6 +15,8 @@ import {
 import styled from 'styled-components';
 import {rem} from 'polished/lib/index';
 
+import config from '../../config';
+
 export const Accordion = styled.div`
   margin-top: ${rem('72px')};
   margin-bottom: ${rem('40px')};
@@ -219,7 +221,7 @@ export default class extends Component {
           </TabSlider>
 
           <SectionLink>
-            <Button href="#">Get Started Now</Button>
+            <Button href={config.WALLET_URL}>Go to dashboard</Button>
           </SectionLink>
         </Grid>
       </Section>

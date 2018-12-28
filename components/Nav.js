@@ -359,7 +359,7 @@ export default class Header extends Component {
                   </NavItem>
                   <NavItem as={Col}>
                     <NavItemInner>
-                      <Link href="#">
+                      <Link href="https://medium.com/scbc-magazine">
                         <a target="_blank">CBCS Magazine</a>
                       </Link>
                     </NavItemInner>
@@ -378,7 +378,7 @@ export default class Header extends Component {
                       <DropdownMenu>
                         <DropdownMenuInner>
                           <DropdownItem>
-                            <Link href="#">
+                            <Link href="/leadership">
                               <a>Lykke Team</a>
                             </Link>
                           </DropdownItem>
@@ -388,22 +388,22 @@ export default class Header extends Component {
                             </NextLink>
                           </DropdownItem>
                           <DropdownItem>
-                            <Link href="#">
+                            <Link href="/city/invest">
                               <a>Invest</a>
                             </Link>
                           </DropdownItem>
                           <DropdownItem>
-                            <Link href="#">
+                            <Link href="/company/news">
                               <a>News</a>
                             </Link>
                           </DropdownItem>
                           <DropdownItem>
-                            <Link href="#">
+                            <Link href="/career_in_lykke">
                               <a>Careers</a>
                             </Link>
                           </DropdownItem>
                           <DropdownItem>
-                            <Link href="#">
+                            <Link href="/city/faq">
                               <a>FAQ</a>
                             </Link>
                           </DropdownItem>

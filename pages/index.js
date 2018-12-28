@@ -29,12 +29,4 @@ const Home = ({posts}) => (
   </>
 );
 
-Home.getInitialProps = async () => {
-  const resp = await fetch('http://localhost:3000/api/posts');
-  const data = await resp.json();
-  return {
-    posts: data.items.slice(0, 3)
-  };
-};
-
 export default Home;

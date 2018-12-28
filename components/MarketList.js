@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {Component} from 'react';
 import styled, {css} from 'styled-components';
 import {Grid, Row, Col} from 'react-styled-flexboxgrid';
 import {rem} from 'polished';
+import config from '../config';
+import fetch from 'isomorphic-unfetch';
 
 const MarketList = styled.div`
   background-color: ${p => p.theme.colors.greyPale};
@@ -103,56 +105,100 @@ const AccentTitle = styled(Title)`
 
 const ListItem = styled.div``;
 
-export default ({quotes: [lyci = {}, ...rest]}) => (
-  <MarketList>
-    <Grid>
-      <Wrapper>
-        <Row className="justify-content-between align-items-center">
-          <Col>
-            <ListItem>
-              <Row className="align-items-center">
-                <Col>
-                  <AccentTitle>
-                    LyCI{' '}
-                    <Value dir={lyci.change > 0 ? 'up' : 'down'}>
-                      {lyci.price.toLocaleString()}
-                    </Value>
-                  </AccentTitle>
-                  <AccentDesc>Lykke Crypto Index</AccentDesc>
-                </Col>
-                <Col className="clear-height">
-                  <Label dir={lyci.change > 0 ? 'up' : 'down'}>
-                    {lyci.change.toLocaleString(undefined, {
-                      style: 'percent',
-                      minimumFractionDigits: 2
-                    })}
-                  </Label>
-                </Col>
-              </Row>
-            </ListItem>
-          </Col>
+// TODO: find me the better place to live
+export const mapToProduct = x => ({
+  ticker: x.AssetPair,
+  price: x.LastPrice,
+  change: x.PriceChange24H
+});
 
-          {rest.map(quote => (
-            <Col key={quote.ticker} className="d-none d-lg-block">
-              <ListItem>
-                <Title>{quote.name}</Title>
-                <Desc>
-                  ${quote.price}
-                  <Value
-                    green={quote.change > 0}
-                    dir={quote.change > 0 ? 'up' : 'down'}
-                  >
-                    {quote.change.toLocaleString(undefined, {
-                      style: 'percent',
-                      minimumFractionDigits: 2
-                    })}
-                  </Value>
-                </Desc>
-              </ListItem>
-            </Col>
-          ))}
-        </Row>
-      </Wrapper>
-    </Grid>
-  </MarketList>
-);
+export default class extends Component {
+  state = {
+    quotes: []
+  };
+
+  componentDidMount() {
+    Promise.all([
+      fetch(`${config.BASE_API_URL}/markets`),
+      fetch(`${config.SELF_URL}/api/products/lyci`)
+    ])
+      .then(responses => Promise.all(responses.map(r => r.json())))
+      .then(([rawQuotes, lyci]) => {
+        let quotes = [mapToProduct(lyci)];
+        for (let i = 0; i < config.PRODUCTS.length; i++) {
+          const {ticker, name} = config.PRODUCTS[i];
+          const idx = rawQuotes.findIndex(x => x.AssetPair === ticker);
+          if (idx > -1) {
+            quotes.push({
+              ...mapToProduct(rawQuotes[idx]),
+              name
+            });
+          }
+        }
+        this.setState({
+          quotes
+        });
+      });
+  }
+
+  render() {
+    const {
+      quotes: [lyci, ...rest]
+    } = this.state;
+    return (
+      <MarketList>
+        <Grid>
+          <Wrapper>
+            <Row className="justify-content-between align-items-center">
+              {lyci && (
+                <Col>
+                  <ListItem>
+                    <Row className="align-items-center">
+                      <Col>
+                        <AccentTitle>
+                          LyCI{' '}
+                          <Value dir={lyci.change > 0 ? 'up' : 'down'}>
+                            {lyci.price.toLocaleString()}
+                          </Value>
+                        </AccentTitle>
+                        <AccentDesc>Lykke Crypto Index</AccentDesc>
+                      </Col>
+                      <Col className="clear-height">
+                        <Label dir={lyci.change > 0 ? 'up' : 'down'}>
+                          {lyci.change.toLocaleString(undefined, {
+                            style: 'percent',
+                            minimumFractionDigits: 2
+                          })}
+                        </Label>
+                      </Col>
+                    </Row>
+                  </ListItem>
+                </Col>
+              )}
+
+              {rest.map(quote => (
+                <Col key={quote.ticker} className="d-none d-lg-block">
+                  <ListItem>
+                    <Title>{quote.name}</Title>
+                    <Desc>
+                      ${quote.price}
+                      <Value
+                        green={quote.change > 0}
+                        dir={quote.change > 0 ? 'up' : 'down'}
+                      >
+                        {quote.change.toLocaleString(undefined, {
+                          style: 'percent',
+                          minimumFractionDigits: 2
+                        })}
+                      </Value>
+                    </Desc>
+                  </ListItem>
+                </Col>
+              ))}
+            </Row>
+          </Wrapper>
+        </Grid>
+      </MarketList>
+    );
+  }
+}
