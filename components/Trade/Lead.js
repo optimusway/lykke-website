@@ -1,14 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import {Grid, Row, Col} from 'react-styled-flexboxgrid';
-import Button from '../Button'
+import Button from '../Button';
+import {BlockLink} from '../Home/Lead';
+import config from '../../config';
 
-import {
-  Lead,
-  InputGroup,
-  Input,
-  FormSubscribe
-} from '../Home/Lead'
+import {Lead, InputGroup, Input, FormSubscribe} from '../Home/Lead';
 
 export const Image = styled.div`
   position: relative;
@@ -17,11 +14,11 @@ export const Image = styled.div`
   text-align: right;
   margin: -20px 0 100px 0;
   padding-left: 40px;
-  
+
   img {
     max-width: 100%;
   }
-  
+
   @media all and (max-width: 767px) {
     padding-left: 0;
     margin: 20px 0 50px 0;
@@ -35,17 +32,24 @@ export default () => (
         <Col xs={12} sm={7} md={6}>
           <h1>Secure and trusted platform for pro traders.</h1>
           <p className="lead">
-            Buy and sell FX, crypto and other digital assets on our Swiss based exchange.
+            Buy and sell FX, crypto and other digital assets on our Swiss based
+            exchange.
           </p>
           <FormSubscribe>
             <Row>
               <Col xs={12} sm={8} lg={9}>
                 <InputGroup>
-                  <Input typ  e="email" placeholder="Enter your Email to get started"/>
+                  <Input
+                    typ
+                    e="email"
+                    placeholder="Enter your Email to get started"
+                  />
                 </InputGroup>
               </Col>
               <Col xs={12} sm={4} lg={3}>
-                <Button block>Get Started</Button>
+                <Button block>
+                  <BlockLink href={config.WALLET_URL}>Get Started</BlockLink>
+                </Button>
               </Col>
             </Row>
           </FormSubscribe>

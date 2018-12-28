@@ -20,15 +20,15 @@ const Wrapper = styled.div`
 
 const Main = styled.main`
   flex-grow: 1;
-  
+
   @media all and (max-width: 991px) {
     padding-top: 58px;
   }
 `;
 
-const Layout = ({children}) => (
+const Layout = ({quotes, children}) => (
   <Wrapper>
-    <MarketList />
+    <MarketList quotes={quotes} />
     <Header />
     <Main>{children}</Main>
     <Footer />
@@ -36,6 +36,18 @@ const Layout = ({children}) => (
 );
 
 export default class LykkeApp extends App {
+  static async getInitialProps({Component, router, ctx}) {
+    let pageProps = {};
+
+    if (Component.getInitialProps) {
+      pageProps = await Component.getInitialProps(ctx);
+    }
+
+    return {
+      pageProps
+    };
+  }
+
   render() {
     const {Component, pageProps} = this.props;
     return (

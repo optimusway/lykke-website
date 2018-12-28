@@ -1,21 +1,22 @@
-import React from 'react';
+import React, {Component} from 'react';
 import styled, {css} from 'styled-components';
 import {Grid, Row, Col} from 'react-styled-flexboxgrid';
 import {rem} from 'polished';
+import config from '../config';
+import fetch from 'isomorphic-unfetch';
 
 const MarketList = styled.div`
   background-color: ${p => p.theme.colors.greyPale};
   padding-top: ${rem('9px')};
   padding-bottom: ${rem('9px')};
-  
+
   @media all and (max-width: 991px) {
     background-color: transparent;
     position: fixed;
     z-index: 201;
     right: 0;
     top: ${rem('8px')};
-    transition: 
-      opacity ${p => p.theme.transition.primary},
+    transition: opacity ${p => p.theme.transition.primary},
       visibility ${p => p.theme.transition.primary};
 
     .menu-opened & {
@@ -23,7 +24,7 @@ const MarketList = styled.div`
       visibility: 0;
     }
   }
-  
+
   @media all and (max-width: 767px) {
     top: 4px;
   }
@@ -32,7 +33,7 @@ const MarketList = styled.div`
 const Wrapper = styled.div`
   padding-left: ${rem('12px')};
   padding-right: ${rem('12px')};
-  
+
   @media all and (max-width: 991px) {
     padding: 0;
   }
@@ -48,18 +49,8 @@ const Title = styled.div`
 const Value = styled.span`
   font-weight: 600;
   margin-left: ${rem('8px')};
-    
-  ${(p) => p.green &&
-    css`
-      color: ${p => p.theme.colors.green}
-    `
-  }
-    
-  ${(p) => p.red &&
-    css`
-      color: ${p => p.theme.colors.orangeRed}
-    `
-  }
+  color: ${p =>
+    p.dir === 'up' ? p.theme.colors.green : p.theme.colors.orangeRed};
 `;
 
 const Desc = styled.div`
@@ -86,105 +77,128 @@ export const Label = styled.span`
   padding: ${rem('5px')} ${rem('7px')} ${rem('4px')};
   color: ${p => p.theme.colors.white};
   border-radius: ${p => p.theme.corners.primary};
-  background-color: ${p => p.theme.colors.grey};
+  background-color: ${p =>
+    p.dir === 'up' ? p.theme.colors.green : p.theme.colors.orangeRed};
 
-  ${(p) => p.green &&
-    css`
-      background-color: ${p => p.theme.colors.green};
-    `
-  }
-
-  ${(p) => p.red &&
-    css`
-      background-color: ${p => p.theme.colors.red};
-    `
-  }
-
-  ${(p) => p.big &&
+  ${p =>
+    p.big &&
     css`
       font-size: ${rem('24px')};
       letter-spacing: 1.7px;
       padding: ${rem('6px')} ${rem('12px')} ${rem('5px')};
       border-radius: ${p => p.theme.corners.secondary};
-    `
-  }
+    `}
 `;
 
-const ListItem = styled.div`
-  ${(p) => p.accent &&
-    css`
-      ${Desc} {
-        font-size: ${rem('11px')};
-        color: ${p => p.theme.colors.slate};
-        opacity: .6;
-        line-height: 1;
-        margin-top: ${rem('5px')};
-      }
-      
-      ${Title} {
-        font-size: ${rem('16px')};
-        color: ${p => p.theme.colors.dark};
-      }
-    `
-  }
+const AccentDesc = styled(Desc)`
+  font-size: ${rem('11px')};
+  color: ${p => p.theme.colors.slate};
+  opacity: 0.6;
+  line-height: 1;
+  margin-top: ${rem('5px')};
 `;
 
-export default () => (
-  <MarketList>
-    <Grid>
-      <Wrapper>
-        <Row className="justify-content-between align-items-center">
-          <Col>
-            <ListItem accent>
-              <Row className="align-items-center">
+const AccentTitle = styled(Title)`
+  font-size: ${rem('16px')};
+  color: ${p => p.theme.colors.dark};
+`;
+
+const ListItem = styled.div``;
+
+// TODO: find me the better place to live
+export const mapToProduct = x => ({
+  ticker: x.AssetPair,
+  price: x.LastPrice,
+  change: x.PriceChange24H
+});
+
+export default class extends Component {
+  state = {
+    quotes: []
+  };
+
+  componentDidMount() {
+    Promise.all([
+      fetch(`${config.BASE_API_URL}/markets`),
+      fetch(`${config.SELF_URL}/api/products/lyci`)
+    ])
+      .then(responses => Promise.all(responses.map(r => r.json())))
+      .then(([rawQuotes, lyci]) => {
+        let quotes = [mapToProduct(lyci)];
+        for (let i = 0; i < config.PRODUCTS.length; i++) {
+          const {ticker, name} = config.PRODUCTS[i];
+          const idx = rawQuotes.findIndex(x => x.AssetPair === ticker);
+          if (idx > -1) {
+            quotes.push({
+              ...mapToProduct(rawQuotes[idx]),
+              name
+            });
+          }
+        }
+        this.setState({
+          quotes
+        });
+      });
+  }
+
+  render() {
+    const {
+      quotes: [lyci, ...rest]
+    } = this.state;
+    return (
+      <MarketList>
+        <Grid>
+          <Wrapper>
+            <Row className="justify-content-between align-items-center">
+              {lyci && (
                 <Col>
-                  <Title>LyCI <Value green>1280.71</Value></Title>
-                  <Desc>Lykke Crypto Index</Desc>
+                  <ListItem>
+                    <Row className="align-items-center">
+                      <Col>
+                        <AccentTitle>
+                          LyCI{' '}
+                          <Value dir={lyci.change > 0 ? 'up' : 'down'}>
+                            {lyci.price.toLocaleString()}
+                          </Value>
+                        </AccentTitle>
+                        <AccentDesc>Lykke Crypto Index</AccentDesc>
+                      </Col>
+                      <Col className="clear-height">
+                        <Label dir={lyci.change > 0 ? 'up' : 'down'}>
+                          {lyci.change.toLocaleString(undefined, {
+                            style: 'percent',
+                            minimumFractionDigits: 2
+                          })}
+                        </Label>
+                      </Col>
+                    </Row>
+                  </ListItem>
                 </Col>
-                <Col className="clear-height">
-                  <Label green>+ 2.14%</Label>
+              )}
+
+              {rest.map(quote => (
+                <Col key={quote.ticker} className="d-none d-lg-block">
+                  <ListItem>
+                    <Title>{quote.name}</Title>
+                    <Desc>
+                      ${quote.price}
+                      <Value
+                        green={quote.change > 0}
+                        dir={quote.change > 0 ? 'up' : 'down'}
+                      >
+                        {quote.change.toLocaleString(undefined, {
+                          style: 'percent',
+                          minimumFractionDigits: 2
+                        })}
+                      </Value>
+                    </Desc>
+                  </ListItem>
                 </Col>
-              </Row>
-            </ListItem>
-          </Col>
-          <Col className="d-none d-lg-block">
-            <ListItem>
-              <Title>Bitcoin</Title>
-              <Desc>$ 2280.71 <Value green>+200.14%</Value></Desc>
-            </ListItem>
-          </Col>
-          <Col className="d-none d-lg-block">
-            <ListItem>
-              <Title>Ethereum</Title>
-              <Desc>$ 2280.71 <Value red>-2.14%</Value></Desc>
-            </ListItem>
-          </Col>
-          <Col className="d-none d-lg-block">
-            <ListItem>
-              <Title>LKK</Title>
-              <Desc>$ 2280.71 <Value green>+2.14%</Value></Desc>
-            </ListItem>
-          </Col>
-          <Col className="d-none d-lg-block">
-            <ListItem>
-              <Title>Litecoin</Title>
-              <Desc>$ 2280.71 <Value red>-2.14%</Value></Desc>
-            </ListItem>
-          </Col>
-          <Col className="d-none d-lg-block">
-            <ListItem>
-              <Title>Dash</Title>
-              <Desc>$ 2280.71 <Value green>+2.14%</Value></Desc>
-            </ListItem>
-          </Col>
-          <Col className="d-none d-lg-block">
-            <ListItem>
-              <Title>Ethereum Classic</Title>
-              <Desc>$ 2280.71 <Value green>+2.14%</Value></Desc>
-            </ListItem>
-          </Col>
-        </Row>
-      </Wrapper>
-    </Grid>
-  </MarketList>
-);
+              ))}
+            </Row>
+          </Wrapper>
+        </Grid>
+      </MarketList>
+    );
+  }
+}
